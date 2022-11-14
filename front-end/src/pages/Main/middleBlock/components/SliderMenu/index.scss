@@ -1,0 +1,27 @@
+.carousel-indicators {
+  bottom: -45px !important;
+  & button {
+    background-color: #a4acad !important;
+  }
+}
+.carousel-indicators .active {
+  background-color: #ff9846 !important;
+}
+.carousel-control-prev-icon {
+  background-image: url(https://www.svgrepo.com/show/39001/left-arrow.svg) !important;
+}
+.carousel-control-next-icon {
+  background-image: url(https://www.svgrepo.com/show/39001/left-arrow.svg) !important;
+  transform: rotate(180deg) !important;
+}
+.w-100 {
+  width: 1000px !important;
+  height: 500px !important;
+  border-radius: 1rem;
+  @media (max-width: 1600px) {
+    height: 400px !important;
+  }
+  @media (max-width: 1400px) {
+    height: 250px !important;
+  }
+}

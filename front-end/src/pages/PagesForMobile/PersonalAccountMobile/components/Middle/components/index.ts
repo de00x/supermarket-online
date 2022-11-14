@@ -1,0 +1,6 @@
+export { OrdersHistory } from './OrdersHistory'
+export { PersonalInfo } from './PersonalInfo'
+export { Favourites } from './Favourites'
+export { Subscribe } from './Subscribe'
+export { Delivery } from './Delivery'
+export { Logout } from './Logout'

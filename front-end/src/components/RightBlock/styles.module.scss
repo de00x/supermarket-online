@@ -1,0 +1,323 @@
+.rightBlockContainer a {
+  text-decoration: none;
+}
+.personalContainer {
+  margin: 1.5rem 0rem;
+  & .personalTextOne:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+  }
+  & .personalTextTwo {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+    margin-left: 0.3rem;
+    & span {
+      margin-left: 0.4rem;
+      transition: color 0.2s ease-in-out;
+    }
+    & span:hover {
+      cursor: pointer;
+      color: #f97d17;
+    }
+  }
+}
+.cartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid #b5b0b0;
+}
+.cart {
+  display: flex;
+  justify-content: center;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 2rem;
+  align-items: center;
+  color: #fff;
+  background-color: #ff9846;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #ff7300;
+  }
+  & div:nth-child(1) {
+    margin-right: 0.7rem;
+    padding-right: 0.5rem;
+    padding-left: 0.4rem;
+    border-right: 1px solid #eee;
+  }
+  & div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & svg {
+      fill: #fff;
+      margin-right: 0.5rem;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+.basket {
+  margin-top: 3rem;
+  margin-left: 3.5rem;
+  padding-top: 1rem;
+  width: 17rem;
+  height: 6rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  background-color: #f2f2f2;
+  & div:first-child {
+    margin-left: 3.7rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  & div:nth-child(2) {
+    margin-left: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 200;
+    color: #a4acad;
+  }
+  & div:nth-child(3) {
+    font-weight: 200;
+    color: #fff;
+  }
+}
+.freeDelivery {
+  width: 17rem;
+  height: 3rem;
+  margin-left: 3.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: #ff9846;
+  color: white;
+  transition: background-color 0.15s ease-in-out;
+  &:hover {
+    background-color: #f97d17;
+  }
+}
+.delivery {
+  margin-top: 1.5rem;
+  margin-left: 3.5rem;
+  width: 17rem;
+  height: 7rem;
+  border: 1px solid black;
+  & img {
+    width: 17rem;
+    height: 7rem;
+  }
+}
+.deliveryBgd {
+  width: 17rem;
+  height: 6rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  background-color: #f2f2f2;
+}
+.deliveryAddress,
+.deliveryTime {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: -20px;
+}
+.deliveryAddress {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.deliveryTime {
+  font-weight: 300;
+  color: #a4acad;
+}
+.deliveryImg {
+  display: flex;
+  justify-content: center;
+}
+.deliveryImg svg:nth-child(1) {
+  position: relative;
+  left: 34px;
+  top: -1.4rem;
+  z-index: 1;
+  fill: #fff;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.deliveryImg svg:not(:first-child) {
+  position: relative;
+  left: -1rem;
+  top: -2rem;
+  z-index: 0;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.authorisationContainer {
+  display: flex;
+  justify-content: center;
+}
+.personalAreaContainer {
+  padding: 1rem;
+  padding-top: 0.85rem;
+}
+.personalCard a {
+  color: #000;
+}
+.personalCardLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.currentUserLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 0.2rem;
+  font-weight: 600;
+  padding: 0rem 1rem;
+  cursor: default;
+  border-bottom: 1px solid #b5b0b0;
+}
+.goToPersonalCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 0rem 1rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out;
+  &:hover {
+    background-color: #f97d172c;
+  }
+}
+.logOutFromAccount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 0rem 1rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out;
+  &:hover {
+    background-color: #e2e2e23e;
+  }
+}
+.confirmationForAccount {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+}
+.confirmationYes,
+.confirmationNo {
+  border-radius: 1rem;
+  padding: 0.1rem 0.5rem;
+  transition: 0.15s background-color ease-in-out, 0.15s color ease-in-out;
+  cursor: pointer;
+}
+.confirmationYes {
+  border: 1px solid red;
+  &:hover {
+    background-color: rgba(204, 124, 124, 0.826);
+    border: 1px solid rgb(172, 60, 60);
+    color: #fff;
+  }
+}
+.confirmationNo {
+  border: 1px solid #bdb8b8;
+  &:hover {
+    background-color: #a4acad68;
+    color: #fff;
+  }
+}
+.personalArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    font-weight: 500;
+    transition: 0.2s background-color ease-in-out, 0.2s color ease-in-out;
+    background-color: #ff9846;
+    &:hover {
+      cursor: pointer;
+      background-color: #ff7300;
+      color: #e2e2e2;
+    }
+  }
+}
+
+///Media///
+.personalContainer {
+  @media (max-width: 1600px) {
+    margin-left: 0rem;
+  }
+  @media (max-width: 1300px) {
+    width: 17rem;
+  }
+  @media (max-width: 1200px) {
+    width: 15rem;
+  }
+  @media (max-width: 1100px) {
+    width: 13rem;
+  }
+  @media (max-width: 1050px) {
+    display: none;
+  }
+  .personalTextOne:nth-child(1) {
+    @media (max-width: 1500px) {
+      display: none;
+    }
+  }
+  .personalTextTwo {
+    @media (max-width: 1500px) {
+      display: none;
+    }
+  }
+}
+.personalContainerOff {
+  display: none;
+}
+.delivery {
+  @media (max-width: 1600px) {
+    margin-left: 2rem;
+  }
+  @media (max-width: 1500px) {
+    display: none;
+  }
+}
+.deliveryBgd {
+  @media (max-width: 1500px) {
+    display: none;
+  }
+}
+.basket,
+.freeDelivery {
+  @media (max-width: 1600px) {
+    margin-left: 2rem;
+  }
+  @media (max-width: 1500px) {
+    display: none;
+  }
+}
+///Media///

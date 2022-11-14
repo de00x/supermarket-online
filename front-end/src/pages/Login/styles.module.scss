@@ -1,0 +1,122 @@
+.container {
+  margin-top: 1rem;
+  opacity: 0;
+  animation: ani 0.7s forwards;
+}
+@keyframes ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.header {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  margin-top: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+.form {
+  display: flex;
+  justify-content: center;
+}
+.formInput {
+  display: flex;
+  justify-content: center;
+  height: 2.5rem;
+  & input {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 13rem;
+    height: 2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid #f9ebe2;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    &:focus {
+      border: 1px solid #d3d1d0;
+    }
+  }
+}
+.remember {
+  display: flex;
+  justify-content: center;
+  height: 1.5rem;
+  & input {
+    height: 1rem;
+    margin-top: 0.2rem;
+  }
+  & input:hover {
+    cursor: pointer;
+  }
+  & span {
+    margin-left: 0.5rem;
+  }
+}
+.btnContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  & .signBtn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    width: 17rem;
+    height: 2rem;
+    font-weight: 400;
+    color: #fff;
+    background-color: #f7882d;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      background-color: #ca6b1e;
+    }
+  }
+}
+.question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.registeredLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.7rem;
+  & a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      color: #f59344;
+    }
+  }
+}
+.dataErr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: #faaeb6;
+  color: #911f35;
+}
+
+///Media///
+.container {
+  @media (max-width: 1500px) {
+    display: none;
+  }
+}
+///Media///

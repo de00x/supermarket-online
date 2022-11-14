@@ -1,0 +1,285 @@
+input {
+  height: 2rem;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  &::placeholder {
+    color: #bab8b8;
+  }
+  &:focus {
+    border: 1px solid #e2e2e2;
+    &::placeholder {
+      color: #e2e2e200;
+    }
+  }
+}
+
+.middleContainer {
+  margin: 1.5rem 2.5rem;
+}
+.dataForm {
+  padding: 0rem auto;
+}
+.middleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 2rem;
+  cursor: default;
+}
+.dataName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dataLastName,
+.dataFirstName {
+  height: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  width: 45%;
+  &:focus {
+    border: 1px solid #e2e2e2;
+    &::placeholder {
+      color: #e2e2e200;
+    }
+  }
+}
+.whatDelivery,
+.whatPayment,
+.deliveryOn {
+  display: flex;
+  align-items: center;
+}
+.deliveryByCourier,
+.deliveryByPickup,
+.paymentByCard,
+.paymentByInCash,
+.deliveryForNow,
+.deliveryForTime {
+  width: 50%;
+  height: 2rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out, 0.15s color ease-in-out;
+  background-color: #fff;
+  & svg {
+    width: 25px;
+    margin-right: 1rem;
+  }
+}
+.deliveryByCourier,
+.paymentByInCash {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-right: 1px solid #e2e2e2;
+}
+.deliveryByPickup,
+.paymentByCard {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.deliveryByActive {
+  border-right: none;
+  color: #fff;
+  background-color: #ff9846;
+  & svg {
+    fill: #fff;
+  }
+}
+.addressStreet,
+.addressHome {
+  height: 2rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  &:focus {
+    border: 1px solid #e2e2e2;
+    &::placeholder {
+      color: #e2e2e200;
+    }
+  }
+}
+.currentAddress,
+.currentAddressAdditionally {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.currentAddressFlat,
+.currentAddressEntrance,
+.currentAddressFloor,
+.currentAddressCode {
+  height: 2rem;
+  width: 45%;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  &:focus {
+    border: 1px solid #e2e2e2;
+    &::placeholder {
+      color: #e2e2e200;
+    }
+  }
+}
+.isCashback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-left: 0.2rem;
+  font-weight: 500;
+  cursor: default;
+  & input {
+    width: 25%;
+    border: 1px solid #e2e2e2;
+  }
+}
+.isCashbackText {
+  width: 11rem;
+  margin: 0rem 1rem;
+}
+.toggleCashback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  cursor: pointer;
+  border: 1px solid #ff9846;
+  transition: 0.15s background-color ease-in-out, 0.15s color ease-in-out;
+}
+.toggleCashbackActive {
+  color: #fff;
+  background-color: #ff9846;
+}
+.additionallyEmail,
+.additionallyComment {
+  margin-top: 1rem;
+  width: 100%;
+}
+.deliveryForNow {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-right: 1px solid #e2e2e2;
+}
+.deliveryForTime {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.deliveryOnActive {
+  color: #fff;
+  background-color: #ff9846;
+}
+.additionallyDevices {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-weight: 700;
+  padding-left: 0.1rem;
+  cursor: default;
+}
+.devicesCountContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 4rem;
+}
+.devicesCountMinus {
+  transition: 0.15s fill ease-in-out;
+  & svg {
+    width: 13px;
+    &:hover {
+      cursor: pointer;
+      fill: #949292;
+    }
+  }
+}
+.devicesCountPlus {
+  transition: 0.15s fill ease-in-out;
+  & svg {
+    width: 13px;
+    &:hover {
+      cursor: pointer;
+      fill: #ff9846;
+    }
+  }
+}
+.devicesCounter {
+  padding-top: 0.1rem;
+  cursor: default;
+}
+.inputPromocode {
+  width: 100%;
+  margin-top: 1rem;
+}
+.footerTotalPriceContainer {
+  margin-top: 2rem;
+}
+.footerTotalProduct,
+.footerDiscount,
+.footerDelivery,
+.footerTotalPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 3rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  cursor: default;
+  border-bottom: 1px solid #e2e2e2;
+}
+.footerTotalPrice {
+  border-bottom: 1px solid #ff9846;
+  color: #ff9846;
+}
+.placeAnOrder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 10rem;
+  padding: 0.7rem 0rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 18px;
+  transition: 0.15s background-color ease-in-out;
+  color: #fff;
+  background-color: #fa8a2f;
+  &:hover {
+    cursor: pointer;
+    background-color: #f57309;
+  }
+}
+
+///Media///
+.whatPayment svg {
+  @media (max-width: 550px) {
+    display: none;
+  }
+}
+.deliveryByCourier,
+.deliveryByPickup,
+.paymentByInCash,
+.paymentByCard,
+.isCashbackText,
+.toggleCashback,
+.deliveryForNow,
+.deliveryForTime,
+.devicesText {
+  @media (max-width: 550px) {
+    font-size: 14px;
+  }
+}
+
+///Media///

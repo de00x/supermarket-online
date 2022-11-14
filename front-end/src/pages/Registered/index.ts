@@ -1,0 +1,1 @@
+export { Registered } from "./Registered";

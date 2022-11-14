@@ -1,0 +1,138 @@
+.footerContainer {
+  width: 61.2rem;
+  margin-left: 5rem;
+}
+.header {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+  color: #838a8a;
+}
+.footerMain {
+  font-weight: 200;
+  line-height: 19px;
+  color: #707474;
+}
+.footerTable {
+  margin-top: 0.5rem;
+  & ul {
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  & li {
+    list-style-type: disc;
+  }
+}
+.more {
+  margin-top: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  color: #f46d40;
+  &:hover {
+    font-size: 16.5px;
+    transition: 0.2s;
+    color: #f04107;
+  }
+}
+.moreContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.hidden {
+  font-weight: 400;
+  cursor: pointer;
+  color: #838a8a;
+  &:hover {
+    font-size: 16.5px;
+    transition: 0.2s;
+    color: #545858;
+  }
+}
+.footer {
+  margin-top: 3rem;
+  border-top: 1px solid #a4acad;
+}
+.footerContacts {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.connection,
+.contacts {
+  padding-left: 1.5rem;
+}
+.contacts div {
+  display: flex;
+  justify-content: center;
+}
+.about {
+  font-weight: 400;
+  border-right: 1px solid #a4acad;
+  color: #000;
+  & div {
+    display: flex;
+    justify-content: center;
+  }
+  & div:not(:first-child) {
+    margin-top: 0.3rem;
+  }
+}
+.connection {
+  display: grid;
+  justify-content: center;
+  border-right: 1px solid #a4acad;
+  & div:first-child {
+    height: 0.5rem;
+    font-weight: 400;
+    color: #000;
+  }
+  & div:nth-child(2) {
+    height: 0.5rem;
+  }
+}
+.footerImg {
+  display: grid;
+  grid-template-columns: repeat(3, 5.2rem);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  & img {
+    cursor: pointer;
+  }
+}
+.contacts div:not(:last-child) {
+  text-decoration: underline;
+  margin-bottom: 0.3rem;
+}
+
+////////////// media //////////////
+.footerContainer {
+  @media (max-width: 1750px) {
+    width: 45rem;
+  }
+  @media (max-width: 1350px) {
+    width: 37rem;
+    margin-left: 6rem;
+  }
+  @media (max-width: 1250px) {
+    width: 38rem;
+    margin-left: 5rem;
+  }
+  @media (max-width: 1200px) {
+    width: 33rem;
+    margin-left: 3rem;
+  }
+  @media (max-width: 1050px) {
+    margin-left: 2rem;
+    width: 40rem;
+  }
+  @media (max-width: 900px) {
+    width: 30rem;
+  }
+}
+////////////// media //////////////

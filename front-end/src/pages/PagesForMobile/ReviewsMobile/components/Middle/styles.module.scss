@@ -1,0 +1,418 @@
+.middleContainer {
+  margin: 1.5rem 2.5rem;
+}
+.middleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 24px;
+}
+.reviewContainer,
+.reviewContainerLoading {
+  margin-top: 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+}
+.reviewContainerLoading {
+  height: 10rem;
+  padding: 0rem;
+}
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+  padding: 0rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e2e2;
+}
+.reviewName {
+  display: flex;
+  justify-content: flex-start;
+  width: 30%;
+  color: #f9760c;
+}
+.reviewDate {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  border-left: 1px solid #dfdcdcdb;
+  border-right: 1px solid #dfdcdcdb;
+  color: #c0bebe;
+}
+.reviewStars {
+  display: flex;
+  justify-content: flex-end;
+  width: 30%;
+  display: flex;
+  fill: #dfdcdcdb;
+}
+.reviewText {
+  border-bottom: 1px solid #e2e2e2;
+}
+.reviewStarsActiveOne div {
+  &:nth-child(1) {
+    fill: gold;
+  }
+}
+.reviewStarsActiveTwo div {
+  &:nth-child(1) {
+    fill: gold;
+  }
+  &:nth-child(2) {
+    fill: gold;
+  }
+}
+.reviewStarsActiveThree div {
+  &:nth-child(1) {
+    fill: gold;
+  }
+  &:nth-child(2) {
+    fill: gold;
+  }
+  &:nth-child(3) {
+    fill: gold;
+  }
+}
+.reviewStarsActiveThour div {
+  &:nth-child(1) {
+    fill: gold;
+  }
+  &:nth-child(2) {
+    fill: gold;
+  }
+  &:nth-child(3) {
+    fill: gold;
+  }
+  &:nth-child(4) {
+    fill: gold;
+  }
+}
+.reviewStarsActiveFive div {
+  &:nth-child(1) {
+    fill: gold;
+  }
+  &:nth-child(2) {
+    fill: gold;
+  }
+  &:nth-child(3) {
+    fill: gold;
+  }
+  &:nth-child(4) {
+    fill: gold;
+  }
+  &:nth-child(5) {
+    fill: gold;
+  }
+}
+
+.addReview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  padding: 0.5rem 0rem;
+  border-radius: 3rem;
+  color: #fff;
+  background-color: #ff9846;
+  transition: 0.15s background-color ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: #f9760c;
+  }
+}
+.addReviewActive {
+  margin-bottom: 0rem;
+}
+.formAddReview {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 1.5rem;
+  border: 1px solid #f9770c;
+}
+.formAddReviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & input {
+    &:focus {
+      border: 1px solid #f9760c;
+    }
+  }
+  & svg {
+    cursor: pointer;
+    fill: #cdc9c9;
+  }
+}
+.formAddReviewHeaderErr {
+  & input {
+    border: 1px solid red !important;
+  }
+}
+.formAddReviewText {
+  margin-top: 1rem;
+  & textarea {
+    width: 100%;
+    height: 5.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    resize: none;
+    background-color: #e2e2e281;
+    &:focus {
+      border: 1px solid #f9760c;
+      &::placeholder {
+        color: #abaaaa00;
+      }
+    }
+    &::placeholder {
+      font-size: 14px;
+      color: #abaaaa;
+    }
+  }
+}
+.formAddReviewTextErr {
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+  border: 1px solid red;
+  & textarea {
+    border: none !important;
+  }
+}
+.countStarsContainer {
+  & svg {
+    transition: 0.15s fill ease-in-out;
+  }
+}
+.countStarsActiveOne {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+}
+.countStarsActiveTwo {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+}
+.countStarsActiveThree {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+}
+.countStarsActiveThour {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+  & svg:nth-child(4) {
+    fill: gold;
+  }
+}
+.countStarsActiveFive {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+  & svg:nth-child(4) {
+    fill: gold;
+  }
+  & svg:nth-child(5) {
+    fill: gold;
+  }
+}
+.reviewTextLengthErrContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0rem;
+}
+.reviewTextLengthErr {
+  padding: 0.1rem 1rem;
+  border-radius: 3rem;
+  font-weight: 600;
+  background-color: rgb(241, 112, 112);
+  border: 1px solid rgb(85, 9, 9);
+  color: rgb(85, 9, 9);
+}
+.newReviewHeaderContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+}
+.newReviewHeaderText {
+  margin-top: 1rem;
+  font-weight: 800;
+  font-size: 22px;
+  color: #f9760c;
+  cursor: default;
+}
+.formReviewClosed {
+  font-weight: 900;
+  font-size: 22px;
+  transition: 0.1s color ease-in-out;
+  cursor: pointer;
+  &:hover {
+    color: #abaaaa;
+  }
+}
+.confirmationClosedFormContainer {
+  margin-top: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid #abaaaa;
+}
+.confirmationClosedFormText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-weight: 600;
+}
+.confirmationClosedFormBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  & button:nth-child(1) {
+    padding: 0.1rem 1.5rem;
+    border: 1px solid #abaaaa;
+    border-radius: 1rem;
+    transition: 0.15s background-color ease-in-out, 0.15s color ease-in-out;
+    &:hover {
+      background-color: #abaaaa;
+      color: #fff;
+    }
+  }
+  & button:nth-child(2) {
+    padding: 0.1rem 1.5rem;
+    border: 1px solid #f9760c;
+    border-radius: 1rem;
+    transition: 0.15s background-color ease-in-out, 0.15s color ease-in-out;
+    &:hover {
+      background-color: #f9760c;
+      color: #fff;
+    }
+  }
+}
+.addReviewErrRepeat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  padding: 1.5rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(129, 243, 133);
+  border: 1px solid rgb(21, 184, 27);
+  color: rgb(23, 150, 27);
+}
+.addReviewErrData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(250, 153, 153);
+  border: 1px solid rgb(206, 110, 110);
+  color: rgb(230, 70, 70);
+}
+.active {
+  & svg {
+    fill: red;
+  }
+}
+.successReviewText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 3rem;
+  background-color: #eceae8;
+  color: #ff5100;
+}
+.addReviewErrNotAuthorization {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  padding: 0.5rem;
+  color: rgb(135, 20, 20);
+  background-color: rgba(223, 74, 74, 0.562);
+}
+
+///Media///
+.reviewHeader {
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+.reviewName {
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+}
+.reviewDate {
+  @media (max-width: 600px) {
+    width: 100%;
+    border: none;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+}
+.reviewStars {
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+.formAddReviewHeader {
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+.countStarsContainer,
+.formAddReviewText {
+  @media (max-width: 600px) {
+    margin-top: 0.5rem;
+  }
+}
+///Media///

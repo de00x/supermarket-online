@@ -1,0 +1,1 @@
+export { MiddleSlider } from "./MiddleSlider";

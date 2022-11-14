@@ -1,0 +1,1 @@
+export { SkeletonBeveragesLoading } from './SkeletonBeveragesLoading'

@@ -1,0 +1,1 @@
+export { SidebarPizzasMobile } from './SidebarPizzasMobile'

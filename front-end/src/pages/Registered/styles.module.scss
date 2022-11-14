@@ -1,0 +1,125 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.container {
+  width: 20rem;
+  height: 20rem;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  & svg {
+    width: 80px;
+    height: 80px;
+  }
+}
+.header {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  margin-top: 0.6rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+.formInput {
+  display: flex;
+  justify-content: center;
+  & input {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 13rem;
+    height: 2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid #e2e2e2;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    &:focus {
+      border: 1px solid #aaa6a6;
+    }
+  }
+}
+.inputErrData input {
+  border: 1px solid red;
+  &:focus {
+    border: 1px solid red;
+  }
+  &::placeholder {
+    color: red;
+  }
+}
+.registerError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: 1px solid #d94e5ca6;
+  background-color: #faaeb6;
+  color: #b13c53;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-weight: 700;
+  & .signBtn {
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+    width: 17rem;
+    height: 2rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ff7300;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      background-color: #ec6d04;
+    }
+  }
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  font-weight: 300;
+  color: #6a757c66;
+}
+.registeredLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  font-weight: 500;
+  & a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      color: #f59344;
+    }
+  }
+}
+.incorrectData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: red;
+}

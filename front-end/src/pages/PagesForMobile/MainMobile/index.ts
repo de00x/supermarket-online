@@ -1,0 +1,1 @@
+export { MainMobile } from './MainMobile'

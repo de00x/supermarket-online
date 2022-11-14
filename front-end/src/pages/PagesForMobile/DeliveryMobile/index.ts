@@ -1,0 +1,1 @@
+export { DeliveryMobile } from './DeliveryMobile'

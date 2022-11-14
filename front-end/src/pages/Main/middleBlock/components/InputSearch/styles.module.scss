@@ -1,0 +1,134 @@
+.containerForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.searchInput {
+  position: absolute;
+  margin-left: 1rem;
+  fill: #d1d1d1;
+}
+.closeInput {
+  position: absolute;
+  margin-left: 20rem;
+  fill: #d1d1d196;
+  &:hover {
+    cursor: pointer;
+    fill: #9b9b9b;
+    transition: 0.5s;
+  }
+}
+.inputForm {
+  width: 50%;
+  height: 2.5rem;
+  padding: 0.1rem 3rem;
+  border-radius: 0.3rem;
+  background-color: #f2f2f2;
+  border: 1px solid #d1d1d1;
+  color: #9b9b9b;
+  &::placeholder {
+    color: #b9b8b8;
+  }
+  &:focus {
+    &::placeholder {
+      color: #a4acad00;
+    }
+  }
+}
+.inputFormActive {
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
+  border: none;
+  background-color: rgba(232, 226, 226, 0.539);
+}
+.activeFlySearchContainer {
+  display: flex;
+  position: absolute;
+  top: 7rem;
+  width: 18.6%;
+  max-width: 357px;
+  height: 15rem;
+  z-index: 10;
+  overflow: auto;
+  overflow-x: hidden;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.activeFlySearch {
+  width: 100%;
+}
+.flySearch {
+  width: 100%;
+  background-color: rgb(232 226 226 / 85%);
+  display: flex;
+  transition: 0.2s background-color ease-in-out;
+  &:not(:last-child) {
+    border-bottom: 1px solid #0000001a;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #a0919178;
+  }
+}
+.flySearchImg {
+  & img {
+    width: 3.5rem;
+    height: 2.5rem;
+  }
+}
+.flySearchName {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 0.5rem;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  height: 100%;
+}
+
+///Media///
+.activeFlySearchContainer {
+  @media (max-width: 1500px) {
+    width: 18.4%;
+  }
+  @media (max-width: 1300px) {
+    width: 18.2%;
+  }
+  @media (max-width: 1100px) {
+    width: 18.1%;
+  }
+  @media (max-width: 1050px) {
+    width: 22.8%;
+  }
+  @media (max-width: 1000px) {
+    width: 22.6%;
+  }
+  @media (max-width: 900px) {
+    width: 22.4%;
+  }
+  @media (max-width: 750px) {
+    width: 22.2%;
+  }
+}
+.closeInput {
+  @media (max-width: 1900px) {
+    margin-left: 16.5%;
+  }
+  @media (max-width: 1400px) {
+    margin-left: 15.5%;
+  }
+  @media (max-width: 1100px) {
+    margin-left: 14.5%;
+  }
+  @media (max-width: 1050px) {
+    margin-left: 19.5%;
+  }
+  @media (max-width: 900px) {
+    margin-left: 18.5%;
+  }
+  @media (max-width: 800px) {
+    margin-left: 17.5%;
+  }
+}
+///Media///

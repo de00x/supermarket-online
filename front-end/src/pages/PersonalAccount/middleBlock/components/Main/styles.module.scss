@@ -1,0 +1,558 @@
+.container {
+  margin: 5rem 5rem;
+}
+.personalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 2rem;
+}
+.personalBlockContainer,
+.additionallyBlockContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.personalInfoContainer,
+.favouritesInfoContainer,
+.additionallyInfoContainer,
+.orderInfoContainer {
+  padding: 1rem 2rem;
+  border-radius: 0.3rem;
+  width: 45%;
+  background-color: #fff;
+  & a {
+    text-decoration: none;
+  }
+}
+.personalInfo,
+.favouritesInfo,
+.additionallyInfo,
+.orderInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: default;
+  border-bottom: 1px solid #e2e2e2;
+  & svg {
+    margin-right: 0.5rem;
+  }
+}
+.personalLastNameContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  border-bottom: 1px solid #e2e2e2;
+  & div:nth-child(1) {
+    color: #b8b4b4;
+    font-weight: 500;
+  }
+}
+.personalEmailContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  border-bottom: 1px solid #e2e2e2;
+  & div:nth-child(1) {
+    color: #b8b4b4;
+    font-weight: 500;
+  }
+}
+.personalTelContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  border-bottom: 1px solid #e2e2e2;
+  & div:nth-child(1) {
+    color: #b8b4b4;
+    font-weight: 500;
+  }
+}
+.changeDataContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.15s background-color ease-in-out;
+    background-color: #aea7a7;
+    color: #fff;
+    &:hover {
+      background-color: #868080;
+    }
+  }
+}
+.changeDataContainerActive {
+  & div:nth-child(1) {
+    background-color: rgb(49, 201, 49);
+    &:hover {
+      background-color: rgb(26, 213, 26);
+    }
+  }
+}
+.favouritesText,
+.orderText {
+  margin-top: 0.8rem;
+  color: #b8b4b4;
+}
+.changeFavourites,
+.checkedSaveChanged,
+.viewAllOrders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.8rem;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out;
+  background-color: #aea7a7;
+  color: #fff;
+  &:hover {
+    background-color: #868080;
+  }
+}
+.deliveryBlockContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.deliveryBlock {
+  width: 70%;
+  padding: 1rem 2rem;
+  border-radius: 0.3rem;
+  background-color: #fff;
+}
+.deliveryBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid #e2e2e2;
+  & svg {
+    margin-right: 0.2rem;
+  }
+}
+.deliveryInfoText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  border-bottom: 1px solid #e2e2e2;
+  color: #858181;
+}
+.deliveryInfoChange {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  color: blue;
+  & div {
+    transition: 0.15s color ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: rgb(4, 4, 158);
+    }
+  }
+}
+.deliveryAddNewAddressContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.deliveryAddNewAddressContainerActive {
+  justify-content: space-around;
+}
+.deliveryAddNewAddressText,
+.deliveryCancelNewAddressText {
+  border-radius: 0.5rem;
+  padding: 0.4rem 4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s background-color ease-in-out;
+  background-color: #aea7a7;
+  color: #fff;
+  &:hover {
+    background-color: #868080;
+  }
+}
+.deliveryAddNewAddressTextActive {
+  transition: 0.15s background-color ease-in-out;
+  background-color: rgb(49, 201, 49);
+  &:hover {
+    background-color: rgb(26, 213, 26);
+  }
+}
+.additionallyBlockContainer {
+  margin-top: 2rem;
+}
+.additionallyInfoInput {
+  margin-top: 0.8rem;
+  margin-bottom: 0.3rem;
+  width: 100%;
+  border: 1px solid #e2e2e2;
+  &::placeholder {
+    font-size: 14px;
+  }
+}
+.checkedNews,
+.checkedStocks {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+  max-width: 12.5rem;
+  cursor: pointer;
+  & input {
+    cursor: pointer;
+    height: 16px;
+    margin-right: 0.5rem;
+  }
+}
+.checkedStocks {
+  max-width: 11.5rem;
+}
+.inputsChangedName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 13rem;
+  & input {
+    max-width: 6.5rem;
+  }
+}
+.inputsChangedNameErr {
+  & input {
+    color: red;
+    border: 1px solid red;
+    &::placeholder {
+      color: red;
+    }
+  }
+}
+.inputChangedEmail,
+.inputChangedTel {
+  width: 13rem;
+  & input {
+    max-width: 6.5rem;
+  }
+}
+.inputsChangesEmailTelErr {
+  color: red;
+  border: 1px solid red;
+  &::placeholder {
+    color: red;
+  }
+}
+.successDataChanged,
+.newPasswordSuccessChangedText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: rgb(129, 205, 15);
+}
+.changeDataContainerSuccessTextOn,
+.changeDataContainerSuccessTextOn2,
+.changeDataContainerSuccessTextOn3,
+.changeDataContainerSuccessTextOn4 {
+  margin-top: 0.1rem;
+}
+
+.changedPasswordContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1rem;
+  & input {
+    border: 1px solid #e2e2e2;
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+  & input:not(:last-child) {
+    margin-bottom: 0.7rem;
+  }
+}
+.saveNewPasswordBtn {
+  font-size: 15px;
+  background-color: rgb(49, 201, 49) !important;
+  &:hover {
+    background-color: rgb(26, 213, 26) !important;
+  }
+}
+.cancelChangesPass {
+  font-size: 15px;
+}
+.newPassErr,
+.oldPasswordIncorrectedText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  color: rgb(182, 58, 58);
+}
+.addedNewAddressContainer,
+.editedAddressContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0rem 1rem;
+  color: #858181;
+  border-bottom: 1px solid #e2e2e2;
+  & input {
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+}
+.addedNewAddressContainerRedUnderline {
+  border-bottom: 1px solid red;
+  & input::placeholder {
+    color: red;
+  }
+}
+.newAddressSuccessAddedText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: rgb(9, 204, 9);
+}
+.errAddNewAddressLengthSymbols {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: red;
+}
+.fillDataText {
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  color: #bbb3b3 !important;
+  cursor: pointer;
+  transition: 0.15s color ease-in-out;
+  &:hover {
+    color: #494545 !important;
+  }
+}
+.deleteAccContainer,
+.confirmationBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0rem;
+}
+.confirmationBtnContainer {
+  margin: 0rem;
+}
+.deleteAccBtn {
+  padding: 1rem 10rem;
+  border-radius: 3rem;
+  font-weight: 700;
+  background-color: #858181;
+  transition: 0.15s background-color ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #615e5e;
+  }
+}
+.confirmationBtnSuccess,
+.confirmationBtnCancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 1rem 5rem;
+  font-weight: 700;
+  background-color: #858181;
+  transition: 0.15s background-color ease-in-out;
+  cursor: pointer;
+}
+.confirmationBtnSuccess {
+  border-right: 1px solid #575555;
+  border-top-left-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+  &:hover {
+    background-color: red;
+  }
+}
+.confirmationBtnCancel {
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  &:hover {
+    background-color: #615e5e;
+  }
+}
+.confirmationBtnSuccessNotActive {
+  cursor: default;
+  background-color: red;
+}
+.finalyConfirmationDeleteAccContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.finalyConfirmationDeleteAcc {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 70%;
+  background-color: rgb(229, 131, 131);
+}
+.finalyConfirmationDeleteText,
+.finalyConfirmationDeleteId {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 600;
+  color: rgb(170, 52, 52);
+}
+.finalyConfirmationDeleteId {
+  margin-top: 0.5rem;
+  text-decoration: underline;
+  color: rgb(148, 40, 40);
+}
+.finalyConfirmationDeleteInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0rem 3rem;
+  & input {
+    transition: 0.15s border ease-in-out;
+    width: 100%;
+    border: 1px solid rgb(177, 50, 50);
+    &:focus {
+      border: 1px solid rgb(102, 21, 21);
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}
+.finalyDeleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  & button {
+    font-weight: 700;
+    padding: 0.2rem 5rem;
+    border-radius: 3rem;
+    border: 1px solid red;
+    background-color: rgb(229, 131, 131);
+  }
+}
+.finalyDeleteBtnActive {
+  & button {
+    transition: 0.15s background-color ease-in-out;
+    &:hover {
+      background-color: rgb(196, 107, 107);
+    }
+  }
+}
+.lockPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0rem 15rem 0rem;
+  & div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 700;
+  }
+  & svg {
+    margin-top: 5rem;
+  }
+}
+///Media///
+
+.personalBlockContainer,
+.additionallyBlockContainer {
+  @media (max-width: 1400px) {
+    flex-direction: column;
+  }
+}
+.personalInfoContainer,
+.additionallyInfoContainer {
+  @media (max-width: 1400px) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+  }
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+  @media (max-width: 900px) {
+    width: 80%;
+  }
+  @media (max-width: 800px) {
+    width: 90%;
+  }
+}
+.favouritesInfoContainer,
+.orderInfoContainer {
+  @media (max-width: 1400px) {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    width: 60%;
+  }
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+  @media (max-width: 900px) {
+    width: 80%;
+  }
+  @media (max-width: 800px) {
+    width: 90%;
+  }
+}
+.changeDataContainer {
+  @media (max-width: 1800px) {
+    flex-direction: column;
+    & div:nth-child(1) {
+      margin-bottom: 1rem;
+    }
+  }
+}
+.deliveryBlock {
+  @media (max-width: 1400px) {
+    width: auto;
+  }
+}
+.deliveryAddNewAddressContainer {
+  @media (max-width: 1900px) {
+    flex-direction: column;
+  }
+}
+.deliveryCancelNewAddressText {
+  @media (max-width: 1900px) {
+    margin-top: 1rem;
+  }
+}
+
+///Media///

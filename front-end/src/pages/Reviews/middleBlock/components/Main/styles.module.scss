@@ -1,0 +1,438 @@
+.notAuthorizationContainer {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  & div {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+  }
+}
+.header {
+  display: flex;
+  margin: 3rem 1.5rem;
+  padding: 0rem 0.5rem;
+  justify-content: space-between;
+}
+.addNewReviewSuccessText,
+.repeatUserOfNewReview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+  margin: 3rem 1.7rem;
+  color: rgb(15, 204, 15);
+}
+.repeatUserOfNewReview {
+  color: rgb(202, 71, 71);
+}
+.formAddNewReviewContainer {
+  margin: 3rem 1.7rem;
+}
+.formContainer {
+  padding: 0.5rem 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid #ff9846;
+}
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & input {
+    transition: 0.15s border ease-in-out;
+    background-color: #f1efef;
+    border: 1px solid #e2e2e2;
+    &:focus {
+      border: 1px solid #b4b0b0;
+    }
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+}
+.starsContainer {
+  & svg {
+    transition: 0.2s fill ease-in-out;
+    cursor: pointer;
+    fill: #cdc9c9;
+  }
+}
+.starsActiveOne {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+}
+.starsActiveTwo {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+}
+.starsActiveThree {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+}
+.starsActiveThour {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+  & svg:nth-child(4) {
+    fill: gold;
+  }
+}
+.starsActiveFive {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+  & svg:nth-child(4) {
+    fill: gold;
+  }
+  & svg:nth-child(5) {
+    fill: gold;
+  }
+}
+.starsContainerErr {
+  & svg {
+    fill: red;
+  }
+}
+.formTextarea {
+  margin-top: 1rem;
+  & textarea {
+    width: 100%;
+    min-height: 5rem;
+    resize: none;
+    padding: 0.5rem;
+    transition: 0.15s border ease-in-out;
+    border-radius: 0.3rem;
+    border: 1px solid #e2e2e2;
+    background-color: #f1efef;
+    &:focus {
+      border: 1px solid #b4b0b0;
+      &::placeholder {
+        color: #b4b0b000;
+      }
+    }
+    &::placeholder {
+      font-size: 14px;
+      color: #b4b0b0;
+    }
+  }
+}
+.formHeaderInputErrData {
+  & input {
+    border: 1px solid red;
+    &::placeholder {
+      color: red;
+    }
+    &:focus {
+      border: 1px solid red;
+    }
+  }
+}
+.formTextareaErrData {
+  & textarea {
+    border: 1px solid red;
+    &::placeholder {
+      color: red;
+    }
+    &:focus {
+      border: 1px solid red;
+    }
+  }
+}
+.formFooterBtnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 0.5rem;
+  margin-top: 2rem;
+}
+.footerBtnSubmit,
+.footerBtnCancel {
+  padding: 0.5rem 3rem;
+  font-weight: 500;
+  border-radius: 3rem;
+  color: #fff;
+  background-color: #cac5c5;
+  border: 1px solid #e2e2e2;
+  transition: 0.15s border ease-in-out, 0.15s background-color ease-in-out;
+  &:hover {
+    background-color: #a5a1a1;
+    border: 1px solid #cac5c5;
+  }
+}
+.footerBtnSubmit {
+  background-color: rgb(14, 226, 14);
+  border: 1px solid rgb(14, 226, 14);
+  transition: 0.15s border ease-in-out, 0.15s background-color ease-in-out;
+  &:hover {
+    background-color: rgb(12, 196, 12);
+    border: 1px solid rgb(12, 196, 12);
+  }
+}
+.headerText {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-end;
+  & svg {
+    margin-right: 0.5rem;
+  }
+}
+.addReviewsBtn {
+  border-radius: 0.3rem;
+  font-weight: 500;
+  padding: 1.1rem 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3rem;
+  color: #000;
+  border: 1px solid #f68f3a;
+  transition: 0.15s background-color ease-in-out, 0.15s color ease-in-out;
+  &:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #f68f3a;
+  }
+}
+.addReviewsBtnActive {
+  cursor: default;
+  color: #fff;
+  background-color: #f68f3a;
+  &:hover {
+    cursor: default;
+  }
+}
+.main {
+  margin: 0rem 1.5rem;
+  margin-bottom: 10rem;
+  & .reviews:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+.reviews {
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  & span:nth-child(1) {
+    font-weight: 600;
+    margin-right: 2rem;
+    padding: 0rem 0.2rem 0.2rem 0.2rem;
+  }
+  & span:nth-child(2) {
+    font-size: 14px;
+    font-weight: 200;
+    padding: 0rem 0.2rem 0.2rem 0.2rem;
+    margin-right: 3rem;
+    border-bottom: 1px solid rgb(194, 191, 191);
+    border-left: 1px solid rgb(194, 191, 191);
+    border-right: 1px solid rgb(194, 191, 191);
+    color: #a4acad;
+  }
+}
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  padding: 0rem 1rem;
+  border-bottom: 1px solid #e2e2e2;
+  & div {
+    width: 33%;
+    &:not(:last-child) {
+      border-right: 1px solid #e2e2e2;
+    }
+  }
+}
+.reviewerNameText {
+  font-weight: 600;
+  color: orangered;
+}
+.reviewerDateText {
+  display: flex;
+  justify-content: center;
+  color: #aba5a5;
+}
+.reviewerStars {
+  display: flex;
+  justify-content: flex-end;
+  & svg {
+    width: 25px;
+    fill: #aba5a5;
+  }
+}
+.reviewerStarsOne {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+}
+.reviewerStarsTwo {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+}
+.reviewerStarsThree {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+}
+.reviewerStarsThour {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+  & svg:nth-child(4) {
+    fill: gold;
+  }
+}
+.reviewerStarsFive {
+  & svg:nth-child(1) {
+    fill: gold;
+  }
+  & svg:nth-child(2) {
+    fill: gold;
+  }
+  & svg:nth-child(3) {
+    fill: gold;
+  }
+  & svg:nth-child(4) {
+    fill: gold;
+  }
+  & svg:nth-child(5) {
+    fill: gold;
+  }
+}
+.reviewText {
+  margin-top: 1rem;
+  padding-bottom: 0.1rem;
+  border-bottom: 1px solid #e2e2e2;
+}
+.reviewsSkeletonContainer {
+  & div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  & div:last-child {
+    margin-bottom: 10rem;
+  }
+}
+.reviewsSkeleton {
+  height: 10rem;
+  width: 100%;
+}
+
+///media///
+
+.addReviewsModal {
+  @media (max-width: 1800px) {
+    right: 42rem;
+  }
+  @media (max-width: 1700px) {
+    right: 38rem;
+  }
+  @media (max-width: 1600px) {
+    right: 34rem;
+  }
+  @media (max-width: 1400px) {
+    right: 26rem;
+  }
+  @media (max-width: 1300px) {
+    right: 26rem;
+  }
+  @media (max-width: 1200px) {
+    right: 23rem;
+  }
+  @media (max-width: 1100px) {
+    right: 20.5rem;
+  }
+  @media (max-width: 1050px) {
+    right: 13rem;
+  }
+  @media (max-width: 1000px) {
+    right: 12.5rem;
+  }
+  @media (max-width: 950px) {
+    right: 12rem;
+  }
+  @media (max-width: 900px) {
+    right: 13rem;
+    width: 22rem;
+  }
+  @media (max-width: 850px) {
+    right: 12rem;
+  }
+  @media (max-width: 800px) {
+    right: 8rem;
+  }
+  @media (max-width: 700px) {
+    right: 5rem;
+  }
+}
+.addReviewsModal {
+  @media (max-width: 900px) {
+    height: 20rem;
+    width: 22rem;
+  }
+  & textarea {
+    @media (max-width: 900px) {
+      width: 21.8rem;
+    }
+  }
+  & div:nth-child(3) {
+    @media (max-width: 900px) {
+      justify-content: flex-start;
+    }
+  }
+}
+.textareaContainer {
+  @media (max-width: 900px) {
+    width: 21.9rem;
+  }
+}
+.incorrectedData {
+  @media (max-width: 900px) {
+    margin-right: 1rem;
+  }
+}
+.closeModal {
+  @media (max-width: 900px) {
+    margin-left: 10rem;
+  }
+}

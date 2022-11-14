@@ -1,0 +1,88 @@
+.needAuthText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  @media (max-width: 1500px) {
+    display: none;
+  }
+}
+.sliderMenu {
+  width: 61.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  @media (max-width: 1800px) {
+    width: 58rem;
+  }
+  @media (max-width: 1700px) {
+    width: 54rem;
+  }
+  @media (max-width: 1600px) {
+    width: 53rem;
+  }
+  @media (max-width: 1500px) {
+    width: 45rem;
+  }
+  @media (max-width: 1400px) {
+    width: 40rem;
+  }
+  @media (max-width: 1300px) {
+    width: 30rem;
+  }
+  @media (max-width: 1200px) {
+    width: 30rem;
+  }
+  @media (max-width: 1050px) {
+    width: 35rem;
+  }
+  @media (max-width: 1050px) {
+    width: 30rem;
+    margin-bottom: 10rem;
+  }
+  @media (max-width: 800px) {
+    width: 28rem;
+  }
+}
+.carousel-indicators {
+  background-color: red !important;
+}
+
+///Media///
+/* blockAuthorization, if max-width < 1500px  */
+.personalMiddleContainer {
+  display: none;
+}
+.personalMiddleContainer {
+  @media (max-width: 1500px) {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+}
+.personalTextOne {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.personalTextTwo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  & span {
+    margin-left: 0.4rem;
+    transition: color 0.2s ease-in-out;
+  }
+  & span:hover {
+    cursor: pointer;
+    color: #f97d17;
+  }
+}
+/* blockAuthorization, if max-width < 1500px  */
+///Media///

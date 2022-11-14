@@ -1,0 +1,133 @@
+.sidebar {
+  margin-top: 1.3rem;
+  padding-left: 8rem;
+  padding-right: 2rem;
+  .logo {
+    display: grid;
+    justify-content: center;
+  }
+}
+.logoText {
+  margin-left: 0.5rem;
+  margin-top: 0.6rem;
+  height: 2.1rem;
+  display: grid;
+  justify-content: center;
+  a {
+    text-decoration: none;
+  }
+  a h3 {
+    transition: color 0.3s ease-in-out;
+    font-weight: 100;
+    font-size: 30px;
+    font-family: fantasy;
+    color: #000;
+    &:hover {
+      transition: 0.3s;
+      color: #ff9846;
+    }
+  }
+}
+.vector {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 0.2rem;
+}
+.menu {
+  display: grid;
+  justify-content: center;
+  & ul {
+    padding-left: 1rem;
+  }
+  li {
+    margin-top: 1rem;
+    & svg {
+      margin-right: 0.8rem;
+    }
+  }
+  li:nth-child(8) {
+    margin-top: 0rem;
+  }
+  li:nth-child(10) {
+    margin-top: 0rem;
+  }
+  li:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    color: #ff9846;
+  }
+  .sidebarChoice {
+    a {
+      transition: color 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #000;
+    }
+    a:hover {
+      color: #f88528;
+      fill: #f88528;
+    }
+    & svg {
+      transition: fill 0.3s ease-in-out;
+    }
+  }
+  .sidebarChoiceActive {
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #f88528;
+      fill: #f88528;
+    }
+  }
+  .menuSoon {
+    width: 2.5rem;
+    height: 0.8rem;
+    font-size: 8px;
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    top: -34px;
+    left: 75px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eb5757;
+    color: white;
+    & span {
+      font-size: 8px;
+      font-weight: 300;
+      margin-top: 0.1rem;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+///media///
+.sidebar {
+  @media (max-width: 1850px) {
+    padding-left: 8rem;
+  }
+  @media (max-width: 1750px) {
+    padding-left: 6rem;
+  }
+  @media (max-width: 1650px) {
+    padding-left: 4.5rem;
+  }
+  @media (max-width: 1500px) {
+    padding-left: 3rem;
+  }
+  @media (max-width: 1500px) {
+    padding-left: 2rem;
+  }
+  @media (max-width: 1500px) {
+    padding-left: 1.5rem;
+  }
+  @media (max-width: 1100px) {
+    padding-left: 1rem;
+  }
+}
+///media///

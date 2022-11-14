@@ -1,0 +1,118 @@
+.middleMenuContainer {
+  width: 61.2rem;
+  margin-left: 5rem;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  @media (max-width: 1850px) {
+    margin-left: 4rem;
+  }
+  @media (max-width: 1800px) {
+    margin-left: 5rem;
+    grid-column-gap: 0px;
+  }
+  @media (max-width: 1750px) {
+    margin-left: 4rem;
+  }
+  @media (max-width: 1700px) {
+    margin-left: 5rem;
+  }
+  @media (max-width: 1650px) {
+    margin-left: 4rem;
+  }
+  @media (max-width: 1600px) {
+    margin-left: 3.5rem;
+  }
+  @media (max-width: 1550px) {
+    margin-left: 2.5rem;
+  }
+  @media (max-width: 1500px) {
+    width: 52.2rem;
+    margin-left: 6rem;
+    grid-row-gap: 20px;
+  }
+  @media (max-width: 1450px) {
+    margin-left: 5rem;
+  }
+  @media (max-width: 1400px) {
+    width: 45.5rem;
+    margin-left: 6rem;
+    grid-row-gap: 15px;
+  }
+  @media (max-width: 1350px) {
+    width: 33rem;
+    margin-left: auto;
+    margin-right: auto;
+    grid-row-gap: 20px;
+  }
+  @media (max-width: 1300px) {
+    width: 30.5rem;
+    grid-row-gap: 10px;
+  }
+  @media (max-width: 1050px) {
+    display: none;
+  }
+  & img {
+    cursor: pointer;
+  }
+}
+.middleMenu1 img {
+  @media (max-width: 1500px) {
+    width: 22rem;
+    height: 100%;
+  }
+  @media (max-width: 1350px) {
+    width: 12rem;
+    height: 100%;
+  }
+}
+.middleMenuImg1 {
+  height: 100%;
+  @media (max-width: 1800px) {
+    width: 13rem;
+  }
+  @media (max-width: 1700px) {
+    width: 10.5rem;
+  }
+  @media (max-width: 1500px) {
+    width: 8.2rem;
+  }
+}
+.middleMenuImg {
+  height: 100%;
+  margin-left: 1.3rem;
+  @media (max-width: 1800px) {
+    width: 13rem;
+  }
+  @media (max-width: 1700px) {
+    width: 10.5rem;
+  }
+  @media (max-width: 1500px) {
+    width: 8.2rem;
+  }
+}
+.middleMenu3 img {
+  @media (max-width: 1500px) {
+    width: 22rem;
+    height: 100%;
+  }
+  @media (max-width: 1350px) {
+    width: 12rem;
+    height: 100%;
+  }
+}
+.middleMenu4 img {
+  height: 100%;
+  @media (max-width: 1800px) {
+    width: 27.5rem;
+  }
+  @media (max-width: 1700px) {
+    width: 22.5rem;
+  }
+  @media (max-width: 1500px) {
+    width: 17.8rem;
+  }
+}

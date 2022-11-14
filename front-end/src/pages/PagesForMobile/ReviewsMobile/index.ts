@@ -1,0 +1,1 @@
+export { ReviewsMobile } from './ReviewsMobile'
