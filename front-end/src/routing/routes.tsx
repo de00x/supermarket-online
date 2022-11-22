@@ -7,6 +7,7 @@ import { Sushi } from '../pages/SidebarMenuPages/SidebarSushi'
 import { Sets } from '../pages/SidebarMenuPages/SidebarSets'
 import { Wok } from '../pages/SidebarMenuPages/SidebarWok'
 import { PersonalAccount } from '../pages/PersonalAccount'
+// eslint-disable-next-line import/named
 import { PathRouteProps } from 'react-router-dom'
 import { Registered } from '../pages/Registered'
 import { Delivery } from '../pages/Delivery'

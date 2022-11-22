@@ -1,11 +1,12 @@
 import { FC } from 'react'
+// eslint-disable-next-line import/named
 import { PathRouteProps, Route, Routes } from 'react-router-dom'
 
-type TRouting = {
+interface IRouting {
   config: PathRouteProps[]
 }
 
-export const Routing: FC<TRouting> = ({ config }) => {
+export const Routing: FC<IRouting> = ({ config }) => {
   return (
     <Routes>
       {config.map((rout) => (
