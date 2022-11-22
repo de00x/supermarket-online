@@ -71,16 +71,10 @@ export const Main: FC = (): JSX.Element => {
               <input placeholder="Имя" />
             </div>
             <div className={styles.formLeftPaymentBy}>
-              <div
-                onClick={() => setPaymentBy('Наличными')}
-                className={stylesPaymentByInCash}
-              >
+              <div onClick={() => setPaymentBy('Наличными')} className={stylesPaymentByInCash}>
                 <Card /> Наличными
               </div>
-              <div
-                onClick={() => setPaymentBy('Картой')}
-                className={stylesPaymentByCard}
-              >
+              <div onClick={() => setPaymentBy('Картой')} className={stylesPaymentByCard}>
                 <Cash /> Картой
               </div>
             </div>
@@ -89,24 +83,14 @@ export const Main: FC = (): JSX.Element => {
               <div>Подготовить сдачу с</div>
               <input disabled={!isCashback} placeholder="Сумма" />
             </div>
-            <input
-              placeholder="Комментарий к заказу"
-              className={styles.commentary}
-            />
+            <input placeholder="Комментарий к заказу" className={styles.commentary} />
             <div className={styles.additionallyContainer}>
-              <div className={styles.additionallyText}>
-                Палочки + соусник обычные
-              </div>
+              <div className={styles.additionallyText}>Палочки + соусник обычные</div>
               <div className={styles.additionallyCounterContainer}>
-                <div
-                  className={styles.additionallyMinus}
-                  onClick={() => minusAdditionallyCount()}
-                >
+                <div className={styles.additionallyMinus} onClick={() => minusAdditionallyCount()}>
                   -
                 </div>
-                <div className={styles.additionallyCount}>
-                  {additionallyCount}
-                </div>
+                <div className={styles.additionallyCount}>{additionallyCount}</div>
                 <div
                   className={styles.additionallyPlus}
                   onClick={() => setAdditionallyCount(additionallyCount + 1)}
@@ -115,23 +99,14 @@ export const Main: FC = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <input
-              className={styles.promocode}
-              placeholder="Введите промокод"
-            />
+            <input className={styles.promocode} placeholder="Введите промокод" />
           </div>
           <div className={styles.formRight}>
             <div className={styles.whatDelivery}>
-              <div
-                onClick={() => setDeliveryBy('Курьером')}
-                className={stylesDeliveryByCourier}
-              >
+              <div onClick={() => setDeliveryBy('Курьером')} className={stylesDeliveryByCourier}>
                 Курьером
               </div>
-              <div
-                onClick={() => setDeliveryBy('Самовывоз')}
-                className={stylesDeliveryByPickup}
-              >
+              <div onClick={() => setDeliveryBy('Самовывоз')} className={stylesDeliveryByPickup}>
                 Самовывоз
               </div>
             </div>
@@ -146,30 +121,21 @@ export const Main: FC = (): JSX.Element => {
               <input placeholder="Код" />
             </div>
             <div className={styles.deliveryOn}>
-              <div
-                onClick={() => setDeliveryOn('На сейчас')}
-                className={stylesDeliveryOnNow}
-              >
+              <div onClick={() => setDeliveryOn('На сейчас')} className={stylesDeliveryOnNow}>
                 На сейчас
               </div>
-              <div
-                onClick={() => setDeliveryOn('На время')}
-                className={stylesDeliveryOnTime}
-              >
+              <div onClick={() => setDeliveryOn('На время')} className={stylesDeliveryOnTime}>
                 На время
               </div>
             </div>
-            <input
-              className={styles.email}
-              placeholder="E-mail(необязательно)"
-            />
+            <input className={styles.email} placeholder="E-mail(необязательно)" />
           </div>
         </div>
         <div className={styles.placeAnOrder}>Оформить заказ</div>
         <div className={styles.footerContainer}>
           <div>
-            Нажимая на кнопку Оформить заказ, Вы подтверждаете свое согласие на
-            обработку персональных данных
+            Нажимая на кнопку Оформить заказ, Вы подтверждаете свое согласие на обработку
+            персональных данных
           </div>
           <div>
             в соответствии с <span>Публичной оффертой</span>

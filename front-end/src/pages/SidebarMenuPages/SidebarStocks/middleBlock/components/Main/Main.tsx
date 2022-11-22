@@ -119,25 +119,16 @@ export const Main: FC = () => {
         <div className={stylesSort}>
           <div>Сортировка</div>
           <div className={styles.sortByContainer}>
-            <div
-              className={styles.currentSortBy}
-              onClick={() => setSortFly(!sortFly)}
-            >
+            <div className={styles.currentSortBy} onClick={() => setSortFly(!sortFly)}>
               {sortBy}
             </div>
             <div>
               {!sortFly ? (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▼
                 </div>
               ) : (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▲
                 </div>
               )}
@@ -161,18 +152,11 @@ export const Main: FC = () => {
           <>
             {allStocks.map((stocks) => (
               <div key={stocks.id} className={styles.item}>
-                <img
-                  src={stocks.img}
-                  alt="item1"
-                  width={'226px'}
-                  height={'190px'}
-                />
+                <img src={stocks.img} alt="item1" width={'226px'} height={'190px'} />
                 <div className={styles.setName}>{stocks.name}</div>
                 <div className={styles.buyProduct}>
                   <div>от {stocks.price} ₽</div>
-                  <div onClick={() => addProductToBasket(stocks)}>
-                    В корзину
-                  </div>
+                  <div onClick={() => addProductToBasket(stocks)}>В корзину</div>
                 </div>
               </div>
             ))}

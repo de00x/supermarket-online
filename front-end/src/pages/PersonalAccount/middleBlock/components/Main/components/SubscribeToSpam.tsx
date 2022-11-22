@@ -8,10 +8,7 @@ export const SubscribeToSpam: FC = () => {
       <div className={styles.additionallyInfo}>
         <MailLogo /> Подписаться на рассылку
       </div>
-      <input
-        className={styles.additionallyInfoInput}
-        placeholder="Введите ваш Email"
-      />
+      <input className={styles.additionallyInfoInput} placeholder="Введите ваш Email" />
       <label className={styles.checkedNews}>
         <input type="checkbox" />
         Хочу получать новости

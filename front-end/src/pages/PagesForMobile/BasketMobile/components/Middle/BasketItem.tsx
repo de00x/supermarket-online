@@ -5,11 +5,7 @@ import { ReactComponent as BtnPlus } from './img/buttonPlus.svg'
 import { useDispatch } from 'react-redux'
 import { FC } from 'react'
 import styles from './styles.module.scss'
-import {
-  addItem,
-  minusItem,
-  removeItem,
-} from '../../../../../redux/slices/slice'
+import { addItem, minusItem, removeItem } from '../../../../../redux/slices/slice'
 
 interface BasketItemsProps {
   id: string
@@ -20,14 +16,7 @@ interface BasketItemsProps {
   count: number
 }
 
-export const BasketItem: FC<BasketItemsProps> = ({
-  id,
-  img,
-  name,
-  info,
-  price,
-  count,
-}) => {
+export const BasketItem: FC<BasketItemsProps> = ({ id, img, name, info, price, count }) => {
   const dispatch = useDispatch()
 
   const minusProduct = (id: string): void => {

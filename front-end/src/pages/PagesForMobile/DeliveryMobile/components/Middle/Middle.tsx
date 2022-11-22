@@ -102,10 +102,7 @@ export const Middle: FC = (): JSX.Element => {
         <input className={styles.addressHome} placeholder="Дом" />
         <div className={styles.currentAddress}>
           <input className={styles.currentAddressFlat} placeholder="Кв" />
-          <input
-            className={styles.currentAddressEntrance}
-            placeholder="Подьезд"
-          />
+          <input className={styles.currentAddressEntrance} placeholder="Подьезд" />
         </div>
         <div className={styles.currentAddressAdditionally}>
           <input className={styles.currentAddressFloor} placeholder="Этаж" />
@@ -124,20 +121,10 @@ export const Middle: FC = (): JSX.Element => {
             ✓
           </div>
           <div className={styles.isCashbackText}>Подготовить сдачу с</div>
-          <input
-            className={styles.isCashbackInput}
-            placeholder="Сумма"
-            disabled={!isCashback}
-          />
+          <input className={styles.isCashbackInput} placeholder="Сумма" disabled={!isCashback} />
         </div>
-        <input
-          className={styles.additionallyEmail}
-          placeholder="E-mail(необязательно)"
-        />
-        <input
-          className={styles.additionallyComment}
-          placeholder="Комментарий к заказу"
-        />
+        <input className={styles.additionallyEmail} placeholder="E-mail(необязательно)" />
+        <input className={styles.additionallyComment} placeholder="Комментарий к заказу" />
         <div className={styles.deliveryOn}>
           <div onClick={onClickForNow} className={deliveryForNow}>
             На сейчас
@@ -149,25 +136,16 @@ export const Middle: FC = (): JSX.Element => {
         <div className={styles.additionallyDevices}>
           <div className={styles.devicesText}>Палочки + соусник обычные</div>
           <div className={styles.devicesCountContainer}>
-            <div
-              onClick={onClickDevicesMinus}
-              className={styles.devicesCountMinus}
-            >
+            <div onClick={onClickDevicesMinus} className={styles.devicesCountMinus}>
               <BtnMinus />
             </div>
             <div className={styles.devicesCounter}>{devicesCounter}</div>
-            <div
-              onClick={onClickDevicesPlus}
-              className={styles.devicesCountPlus}
-            >
+            <div onClick={onClickDevicesPlus} className={styles.devicesCountPlus}>
               <BtnPlus />
             </div>
           </div>
         </div>
-        <input
-          className={styles.inputPromocode}
-          placeholder="Введите промокод"
-        />
+        <input className={styles.inputPromocode} placeholder="Введите промокод" />
         <div className={styles.footerTotalPriceContainer}>
           <div className={styles.footerTotalProduct}>
             <div>Всего позиций: {totalCount}</div>

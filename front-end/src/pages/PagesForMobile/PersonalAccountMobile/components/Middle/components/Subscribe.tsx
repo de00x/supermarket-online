@@ -8,10 +8,7 @@ export const Subscribe: FC = (): JSX.Element => {
       <div className={styles.subscribeToSpamHeader}>
         <MailIcon /> Подписаться на рассылку
       </div>
-      <input
-        placeholder="Введите ваш Email"
-        className={styles.subscribeToSpamInput}
-      ></input>
+      <input placeholder="Введите ваш Email" className={styles.subscribeToSpamInput}></input>
       <div className={styles.spamCheckboxContainer}>
         <label>
           <div className={styles.subscribeToSpamCheckbox}>

@@ -1,12 +1,6 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  middleMenu1,
-  middleMenu2,
-  middleMenu3,
-  middleMenu4,
-  middleMenu5,
-} from '../img/img'
+import { middleMenu1, middleMenu2, middleMenu3, middleMenu4, middleMenu5 } from '../img/img'
 import styles from './styles.module.scss'
 
 export const MiddleMenu: FC = () => {
@@ -19,18 +13,10 @@ export const MiddleMenu: FC = () => {
       </div>
       <div className={styles.middleMenu2}>
         <Link to={'/sushi'}>
-          <img
-            className={styles.middleMenuImg1}
-            src={middleMenu2}
-            alt="middleMenu2"
-          />
+          <img className={styles.middleMenuImg1} src={middleMenu2} alt="middleMenu2" />
         </Link>
         <Link to={'/cornDogs'}>
-          <img
-            className={styles.middleMenuImg}
-            src={middleMenu3}
-            alt="middleMenu3"
-          />
+          <img className={styles.middleMenuImg} src={middleMenu3} alt="middleMenu3" />
         </Link>
       </div>
       <div className={styles.middleMenu3}>

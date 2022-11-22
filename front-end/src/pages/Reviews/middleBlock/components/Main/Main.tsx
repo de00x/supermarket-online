@@ -187,9 +187,7 @@ export const Main: FC = () => {
         </div>
       ) : null}
       {repeatUserOfNewReview ? (
-        <div className={styles.repeatUserOfNewReview}>
-          Вы уже оставляли свой отзыв ранее.
-        </div>
+        <div className={styles.repeatUserOfNewReview}>Вы уже оставляли свой отзыв ранее.</div>
       ) : null}
       {userNotAuth ? (
         <div className={styles.repeatUserOfNewReview}>
@@ -203,43 +201,21 @@ export const Main: FC = () => {
               <div className={stylesFormHeader}>
                 <input
                   value={reviewsData.name}
-                  onChange={(e) =>
-                    setReviewsData({ ...reviewsData, name: e.target.value })
-                  }
+                  onChange={(e) => setReviewsData({ ...reviewsData, name: e.target.value })}
                   placeholder="Ваше имя"
                 />
-                <div
-                  onMouseOut={() => setCounterStars(0)}
-                  className={stylesStarsContainer}
-                >
-                  <Star
-                    onClick={onFirstStar}
-                    onMouseOver={() => setCounterStars(1)}
-                  />
-                  <Star
-                    onClick={onSecondStar}
-                    onMouseOver={() => setCounterStars(2)}
-                  />
-                  <Star
-                    onClick={onThirdStar}
-                    onMouseOver={() => setCounterStars(3)}
-                  />
-                  <Star
-                    onClick={onFourthStar}
-                    onMouseOver={() => setCounterStars(4)}
-                  />
-                  <Star
-                    onClick={onFifthStar}
-                    onMouseOver={() => setCounterStars(5)}
-                  />
+                <div onMouseOut={() => setCounterStars(0)} className={stylesStarsContainer}>
+                  <Star onClick={onFirstStar} onMouseOver={() => setCounterStars(1)} />
+                  <Star onClick={onSecondStar} onMouseOver={() => setCounterStars(2)} />
+                  <Star onClick={onThirdStar} onMouseOver={() => setCounterStars(3)} />
+                  <Star onClick={onFourthStar} onMouseOver={() => setCounterStars(4)} />
+                  <Star onClick={onFifthStar} onMouseOver={() => setCounterStars(5)} />
                 </div>
               </div>
               <div className={stylesFormTextarea}>
                 <textarea
                   value={reviewsData.reviews}
-                  onChange={(e) =>
-                    setReviewsData({ ...reviewsData, reviews: e.target.value })
-                  }
+                  onChange={(e) => setReviewsData({ ...reviewsData, reviews: e.target.value })}
                   placeholder="Введите отзыв"
                 />
               </div>

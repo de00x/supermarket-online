@@ -120,25 +120,16 @@ export const Main: FC = () => {
         <div className={stylesSort}>
           <div>Сортировка</div>
           <div className={styles.sortByContainer}>
-            <div
-              className={styles.currentSortBy}
-              onClick={() => setSortFly(!sortFly)}
-            >
+            <div className={styles.currentSortBy} onClick={() => setSortFly(!sortFly)}>
               {sortBy}
             </div>
             <div>
               {!sortFly ? (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▼
                 </div>
               ) : (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▲
                 </div>
               )}
@@ -162,19 +153,12 @@ export const Main: FC = () => {
           <>
             {allPizzas.map((pizzas) => (
               <div key={pizzas.id} className={styles.item}>
-                <img
-                  src={pizzas.img}
-                  alt="item1"
-                  width={'226px'}
-                  height={'190px'}
-                />
+                <img src={pizzas.img} alt="item1" width={'226px'} height={'190px'} />
                 <div className={styles.setName}>{pizzas.name}</div>
                 <SortByTypeAndSize {...pizzas} />
                 <div className={styles.buyProduct}>
                   <div>от {pizzas.price} ₽</div>
-                  <div onClick={() => addProductToBasket(pizzas)}>
-                    В корзину
-                  </div>
+                  <div onClick={() => addProductToBasket(pizzas)}>В корзину</div>
                 </div>
               </div>
             ))}

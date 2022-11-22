@@ -9,15 +9,13 @@ import styles from './styles.module.scss'
 export const Middle: FC = (): JSX.Element => {
   const [responseReviews, setResponseReviews] = useState<IResponse[]>([])
   const [addReviewErrDataText, setAddReviewErrDataText] = useState('')
-  const [addReviewErrNotAuthorization, setAddReviewErrNotAuthorization] =
-    useState(false)
+  const [addReviewErrNotAuthorization, setAddReviewErrNotAuthorization] = useState(false)
   const [confirmationClosedForm, setConfirmationClosedForm] = useState(false)
   const [addReviewErrRepeat, setAddReviewErrRepeat] = useState(false)
   const [addReviewErrData, setAddReviewErrData] = useState(false)
   const [formAddReview, setFormAddReview] = useState(false)
   const [isLoadingPage, setIsLoadingPage] = useState(true)
-  const [successCreateNewReviewText, setSuccessCreateNewReviewText] =
-    useState(false)
+  const [successCreateNewReviewText, setSuccessCreateNewReviewText] = useState(false)
   const [countActiveStar, setCountActiveStar] = useState(0)
   const [checkedActiveStar, setCheckedActiveStar] = useState(0)
   const [newReviewData, setNewReviewData] = useState<IReviewData>({
@@ -49,24 +47,19 @@ export const Middle: FC = (): JSX.Element => {
   const stylesCounterStars = cn(
     styles.countStarsContainer,
     {
-      [styles.countStarsActiveOne]:
-        countActiveStar === 1 || checkedActiveStar === 1,
+      [styles.countStarsActiveOne]: countActiveStar === 1 || checkedActiveStar === 1,
     },
     {
-      [styles.countStarsActiveTwo]:
-        countActiveStar === 2 || checkedActiveStar === 2,
+      [styles.countStarsActiveTwo]: countActiveStar === 2 || checkedActiveStar === 2,
     },
     {
-      [styles.countStarsActiveThree]:
-        countActiveStar === 3 || checkedActiveStar === 3,
+      [styles.countStarsActiveThree]: countActiveStar === 3 || checkedActiveStar === 3,
     },
     {
-      [styles.countStarsActiveThour]:
-        countActiveStar === 4 || checkedActiveStar === 4,
+      [styles.countStarsActiveThour]: countActiveStar === 4 || checkedActiveStar === 4,
     },
     {
-      [styles.countStarsActiveFive]:
-        countActiveStar === 5 || checkedActiveStar === 5,
+      [styles.countStarsActiveFive]: countActiveStar === 5 || checkedActiveStar === 5,
     }
   )
   /// styles ///
@@ -176,10 +169,7 @@ export const Middle: FC = (): JSX.Element => {
     setCountActiveStar(2)
   }
   const closedForm = (): void => {
-    if (
-      newReviewData.name.length === 0 &&
-      newReviewData.reviewText.length === 0
-    ) {
+    if (newReviewData.name.length === 0 && newReviewData.reviewText.length === 0) {
       setFormAddReview(false)
     } else setConfirmationClosedForm(true)
   }
@@ -192,9 +182,7 @@ export const Middle: FC = (): JSX.Element => {
   const newReviewDataLengthError =
     newReviewData.reviewText.length === 500 || newReviewData.name.length === 15
   const checkErrReqNewReview =
-    newReviewData.name.length > 1 &&
-    newReviewData.reviewText.length > 9 &&
-    newReviewData.stars > 0
+    newReviewData.name.length > 1 && newReviewData.reviewText.length > 9 && newReviewData.stars > 0
   /// longLogic ///
 
   return (
@@ -281,9 +269,7 @@ export const Middle: FC = (): JSX.Element => {
             <div className={stylesFormAddReviewName}>
               <input
                 value={newReviewData.name}
-                onChange={(e) =>
-                  setNewReviewData({ ...newReviewData, name: e.target.value })
-                }
+                onChange={(e) => setNewReviewData({ ...newReviewData, name: e.target.value })}
                 maxLength={15}
                 placeholder="Ваше имя"
               />
@@ -328,9 +314,7 @@ export const Middle: FC = (): JSX.Element => {
         </div>
       ) : null}
       {addReviewErrRepeat ? (
-        <div className={styles.addReviewErrRepeat}>
-          Вы уже оставляли свой отзыв ранее
-        </div>
+        <div className={styles.addReviewErrRepeat}>Вы уже оставляли свой отзыв ранее</div>
       ) : null}
       {addReviewErrData ? (
         <div className={styles.addReviewErrData}>{addReviewErrDataText}</div>

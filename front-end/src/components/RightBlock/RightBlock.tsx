@@ -30,6 +30,9 @@ export const RightBlock: FC = () => {
   const stylesPersonalContainer = cn(styles.personalContainer, {
     [styles.personalContainerOff]: isAuth,
   })
+  const stylesLoginOffRightBlock = cn({
+    [styles.loginOffRightBlock]: localStorage.getItem('login') === null,
+  })
   /// styles ///
 
   /// onClick ///
@@ -67,15 +70,10 @@ export const RightBlock: FC = () => {
                   <div>Мы снова рады вас видеть!</div>
                 </div>
                 <Link to={'/personal'}>
-                  <div className={styles.goToPersonalCard}>
-                    Перейти в личный кабинет
-                  </div>
+                  <div className={styles.goToPersonalCard}>Перейти в личный кабинет</div>
                 </Link>
                 {!confirmationOutAccount ? (
-                  <div
-                    onClick={logOutFromAccount}
-                    className={styles.logOutFromAccount}
-                  >
+                  <div onClick={logOutFromAccount} className={styles.logOutFromAccount}>
                     Выйти из аккаунта
                   </div>
                 ) : (
@@ -83,10 +81,7 @@ export const RightBlock: FC = () => {
                     <div onClick={logOutYes} className={styles.confirmationYes}>
                       Подтвердить
                     </div>
-                    <div
-                      onClick={logOutCancel}
-                      className={styles.confirmationNo}
-                    >
+                    <div onClick={logOutCancel} className={styles.confirmationNo}>
                       Отмена
                     </div>
                   </div>
@@ -113,15 +108,15 @@ export const RightBlock: FC = () => {
               <div className={styles.personalTextOne}>Что бы сделать заказ</div>
               <div className={styles.personalTextTwo}>
                 Вам необходимо
-                <span
-                  onClick={() => setBlockAuthorization(!blockAuthorization)}
-                >
+                <span onClick={() => setBlockAuthorization(!blockAuthorization)}>
                   авторизоваться
                 </span>
               </div>
               {blockAuthorization && (
                 <>
-                  <Login setBlockAuthorization={setBlockAuthorization} />
+                  <div className={stylesLoginOffRightBlock}>
+                    <Login setBlockAuthorization={setBlockAuthorization} />
+                  </div>
                 </>
               )}
             </>
@@ -133,9 +128,7 @@ export const RightBlock: FC = () => {
               <div>Ваша корзина пуста.</div>
               <div>Добавьте же скорее что-нибудь!</div>
             </div>
-            <div className={styles.freeDelivery}>
-              Бесплатная доставка от 800СОМ
-            </div>
+            <div className={styles.freeDelivery}>Бесплатная доставка от 800СОМ</div>
           </>
         )}
 

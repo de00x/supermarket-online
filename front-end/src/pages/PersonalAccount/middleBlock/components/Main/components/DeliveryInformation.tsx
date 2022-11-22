@@ -8,20 +8,13 @@ import styles from '../styles.module.scss'
 export const DeliveryInformation: FC = () => {
   const [editedAddressContainer, setEditedAddressContainer] = useState(false)
   const [currentNumberInAddress, setCurrentNumberInAddress] = useState('')
-  const [newAddressSuccessAddedText, setNewAddressSuccessAddedText] =
-    useState(false)
-  const [responseSuccessNewAddress, setResponseSuccessNewAddress] =
-    useState(false)
-  const [addedNewAddressContainer, setAddedNewAddressContainer] =
-    useState(false)
-  const [addressEditedSuccessText, setAddressEditedSuccessText] =
-    useState(false)
-  const [newAddressErrorAddedText, setNewAddressErrorAddedText] =
-    useState(false)
+  const [newAddressSuccessAddedText, setNewAddressSuccessAddedText] = useState(false)
+  const [responseSuccessNewAddress, setResponseSuccessNewAddress] = useState(false)
+  const [addedNewAddressContainer, setAddedNewAddressContainer] = useState(false)
+  const [addressEditedSuccessText, setAddressEditedSuccessText] = useState(false)
+  const [newAddressErrorAddedText, setNewAddressErrorAddedText] = useState(false)
   const [isLoadingPage, setIsLoadingPage] = useState(true)
-  const [allDeliveryAddress, setAllDeliveryAddress] = useState<
-    IAllDeliveryAddress[]
-  >([])
+  const [allDeliveryAddress, setAllDeliveryAddress] = useState<IAllDeliveryAddress[]>([])
   const [stateNewAddressInput, setStateNewAddressInput] = useState({
     newAddress: '',
   })
@@ -126,10 +119,7 @@ export const DeliveryInformation: FC = () => {
       }
     } else setAddedNewAddressContainer(true)
   }
-  const openInputEditCurrentAddress = (
-    numberInAddress: string,
-    deliveryAddress: string
-  ): void => {
+  const openInputEditCurrentAddress = (numberInAddress: string, deliveryAddress: string): void => {
     setStateNewAddressInput({
       ...stateNewAddressInput,
       newAddress: deliveryAddress,
@@ -141,19 +131,15 @@ export const DeliveryInformation: FC = () => {
 
   /// styles ///
   const stylesDeliveryAddNewAddressText = cn(styles.deliveryAddNewAddressText, {
-    [styles.deliveryAddNewAddressTextActive]:
-      addedNewAddressContainer || editedAddressContainer,
+    [styles.deliveryAddNewAddressTextActive]: addedNewAddressContainer || editedAddressContainer,
   })
   const stylesAddedNewAddressContainer = cn(styles.addedNewAddressContainer, {
     [styles.addedNewAddressContainerRedUnderline]: newAddressErrorAddedText,
   })
-  const stylesDeliveryAddNewAddressContainer = cn(
-    styles.deliveryAddNewAddressContainer,
-    {
-      [styles.deliveryAddNewAddressContainerActive]:
-        addedNewAddressContainer || editedAddressContainer,
-    }
-  )
+  const stylesDeliveryAddNewAddressContainer = cn(styles.deliveryAddNewAddressContainer, {
+    [styles.deliveryAddNewAddressContainerActive]:
+      addedNewAddressContainer || editedAddressContainer,
+  })
   /// styles ///
 
   return (
@@ -184,9 +170,7 @@ export const DeliveryInformation: FC = () => {
           <>
             {allDeliveryAddress.map((address) => (
               <div key={address.numberInAddress}>
-                <div className={styles.deliveryInfoText}>
-                  {address.deliveryAddress}
-                </div>
+                <div className={styles.deliveryInfoText}>{address.deliveryAddress}</div>
                 {!addedNewAddressContainer ? (
                   <div className={styles.deliveryInfoChange}>
                     <div
@@ -200,11 +184,7 @@ export const DeliveryInformation: FC = () => {
                       Изменить адрес
                     </div>
                     {!editedAddressContainer ? (
-                      <div
-                        onClick={() =>
-                          removeCurrentAddress(address.numberInAddress)
-                        }
-                      >
+                      <div onClick={() => removeCurrentAddress(address.numberInAddress)}>
                         Удалить адрес
                       </div>
                     ) : null}
@@ -243,14 +223,10 @@ export const DeliveryInformation: FC = () => {
           </div>
         ) : null}
         {newAddressSuccessAddedText ? (
-          <div className={styles.newAddressSuccessAddedText}>
-            Новый адрес успешно добавлен
-          </div>
+          <div className={styles.newAddressSuccessAddedText}>Новый адрес успешно добавлен</div>
         ) : null}
         {addressEditedSuccessText ? (
-          <div className={styles.newAddressSuccessAddedText}>
-            Адрес был успешно изменен
-          </div>
+          <div className={styles.newAddressSuccessAddedText}>Адрес был успешно изменен</div>
         ) : null}
         {newAddressErrorAddedText ? (
           <div className={styles.errAddNewAddressLengthSymbols}>
@@ -259,25 +235,16 @@ export const DeliveryInformation: FC = () => {
         ) : null}
         <div className={stylesDeliveryAddNewAddressContainer}>
           {editedAddressContainer ? (
-            <div
-              onClick={editeCurrentAddress}
-              className={stylesDeliveryAddNewAddressText}
-            >
+            <div onClick={editeCurrentAddress} className={stylesDeliveryAddNewAddressText}>
               Сохранить изменения
             </div>
           ) : (
-            <div
-              onClick={onAddNewAddress}
-              className={stylesDeliveryAddNewAddressText}
-            >
+            <div onClick={onAddNewAddress} className={stylesDeliveryAddNewAddressText}>
               Добавить новый адрес
             </div>
           )}
           {addedNewAddressContainer || editedAddressContainer ? (
-            <div
-              onClick={onCancelNewAddress}
-              className={styles.deliveryCancelNewAddressText}
-            >
+            <div onClick={onCancelNewAddress} className={styles.deliveryCancelNewAddressText}>
               Отменить изменения
             </div>
           ) : null}

@@ -119,25 +119,16 @@ export const Main: FC = () => {
         <div className={stylesSort}>
           <div>Сортировка</div>
           <div className={styles.sortByContainer}>
-            <div
-              className={styles.currentSortBy}
-              onClick={() => setSortFly(!sortFly)}
-            >
+            <div className={styles.currentSortBy} onClick={() => setSortFly(!sortFly)}>
               {sortBy}
             </div>
             <div>
               {!sortFly ? (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▼
                 </div>
               ) : (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▲
                 </div>
               )}
@@ -161,12 +152,7 @@ export const Main: FC = () => {
           <>
             {allSushi.map((sushi) => (
               <div key={sushi.id} className={styles.item}>
-                <img
-                  src={sushi.img}
-                  alt="item1"
-                  width={'226px'}
-                  height={'190px'}
-                />
+                <img src={sushi.img} alt="item1" width={'226px'} height={'190px'} />
                 <div className={styles.setName}>{sushi.name}</div>
                 <div className={styles.buyProduct}>
                   <div>от {sushi.price} ₽</div>

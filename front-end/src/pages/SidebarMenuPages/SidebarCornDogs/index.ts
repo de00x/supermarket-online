@@ -1,1 +1,1 @@
-export { CornDog } from "./CornDog";
+export { CornDog } from './CornDog'

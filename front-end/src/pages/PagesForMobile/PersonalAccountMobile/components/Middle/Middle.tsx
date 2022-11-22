@@ -1,11 +1,4 @@
-import {
-  Delivery,
-  Favourites,
-  Logout,
-  OrdersHistory,
-  PersonalInfo,
-  Subscribe,
-} from './components'
+import { Delivery, Favourites, Logout, OrdersHistory, PersonalInfo, Subscribe } from './components'
 import { FC } from 'react'
 import styles from './styles.module.scss'
 

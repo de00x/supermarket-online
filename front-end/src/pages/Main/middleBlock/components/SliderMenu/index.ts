@@ -1,1 +1,1 @@
-export { SliderMenu } from "./SliderMenu";
+export { SliderMenu } from './SliderMenu'

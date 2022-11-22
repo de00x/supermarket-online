@@ -60,8 +60,7 @@
     justify-content: center;
     background-color: #ff7300;
     color: #fff;
-    transition: background-color 0.15s ease-in-out,
-      border-color 0.15s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
     &:hover {
       cursor: pointer;
       transition: 0.3s;

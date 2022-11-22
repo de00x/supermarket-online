@@ -1,1 +1,1 @@
-export { Pizzas } from "./Pizzas";
+export { Pizzas } from './Pizzas'

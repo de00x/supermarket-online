@@ -6,8 +6,7 @@ import styles from '../styles.module.scss'
 
 export const Logout: FC = () => {
   const [valueFinalyInputDelete, setValueFinalyInputDelete] = useState('')
-  const [finalyConfirmationDeleteAcc, setFinalyConfirmationDeleteAcc] =
-    useState(false)
+  const [finalyConfirmationDeleteAcc, setFinalyConfirmationDeleteAcc] = useState(false)
   const [deleteAccBtn, setDeleteAccBtn] = useState(true)
   const navigate = useNavigate()
 
@@ -49,8 +48,7 @@ export const Logout: FC = () => {
     [styles.confirmationBtnSuccessNotActive]: finalyConfirmationDeleteAcc,
   })
   const stylesFinalyDeleteBtn = cn(styles.finalyDeleteBtn, {
-    [styles.finalyDeleteBtnActive]:
-      localStorage.getItem('id') === valueFinalyInputDelete,
+    [styles.finalyDeleteBtnActive]: localStorage.getItem('id') === valueFinalyInputDelete,
   })
   /// styles ///
 
@@ -58,10 +56,7 @@ export const Logout: FC = () => {
     <>
       <div className={styles.deleteAccContainer}>
         {deleteAccBtn ? (
-          <div
-            onClick={() => setDeleteAccBtn(false)}
-            className={styles.deleteAccBtn}
-          >
+          <div onClick={() => setDeleteAccBtn(false)} className={styles.deleteAccBtn}>
             Удалить аккаунт
           </div>
         ) : (
@@ -72,10 +67,7 @@ export const Logout: FC = () => {
             >
               Подтвердить
             </div>
-            <div
-              onClick={confirmationBtnCancel}
-              className={styles.confirmationBtnCancel}
-            >
+            <div onClick={confirmationBtnCancel} className={styles.confirmationBtnCancel}>
               Отменить
             </div>
           </div>
@@ -86,13 +78,9 @@ export const Logout: FC = () => {
           <div className={styles.finalyConfirmationDeleteAcc}>
             <div className={styles.finalyConfirmationDeleteText}>
               Введите id в поле ввода и нажмите удалить.
-              <div>
-                Внимание! При удалении аккаунта вся информация удаляется.
-              </div>
+              <div>Внимание! При удалении аккаунта вся информация удаляется.</div>
             </div>
-            <div className={styles.finalyConfirmationDeleteId}>
-              {localStorage.getItem('id')}
-            </div>
+            <div className={styles.finalyConfirmationDeleteId}>{localStorage.getItem('id')}</div>
             <div className={styles.finalyConfirmationDeleteInput}>
               <input
                 value={valueFinalyInputDelete}
@@ -101,10 +89,7 @@ export const Logout: FC = () => {
               />
             </div>
             <div className={stylesFinalyDeleteBtn}>
-              <button
-                onClick={finalDeleteUserRequest}
-                disabled={isFinalyDeleteBtn()}
-              >
+              <button onClick={finalDeleteUserRequest} disabled={isFinalyDeleteBtn()}>
                 Удалить
               </button>
             </div>

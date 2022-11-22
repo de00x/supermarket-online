@@ -178,17 +178,11 @@ export const Middle: FC = (): JSX.Element => {
               </div>
               <div className={styles.cartProductInfoWrapper}>
                 <div className={styles.cartProductInfoContainer}>
-                  <div className={styles.cartProductInfoName}>
-                    {cartProduct.name}
-                  </div>
-                  <div className={styles.cartProductInfoInfo}>
-                    {cartProduct.info}
-                  </div>
+                  <div className={styles.cartProductInfoName}>{cartProduct.name}</div>
+                  <div className={styles.cartProductInfoInfo}>{cartProduct.info}</div>
                 </div>
                 <div className={styles.cartProductBuy}>
-                  <div className={styles.cartProductBuyPrice}>
-                    {cartProduct.price} RUB
-                  </div>
+                  <div className={styles.cartProductBuyPrice}>{cartProduct.price} RUB</div>
                   <div
                     onClick={() => addProductToBasket(cartProduct)}
                     className={styles.cartProductBuyToCart}

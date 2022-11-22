@@ -6,8 +6,7 @@ import cn from 'classnames'
 import styles from '../styles.module.scss'
 
 export const PersonalInfo: FC = (): JSX.Element => {
-  const [newPasswordSuccessChanged, setNewPasswordSuccessChanged] =
-    useState(false)
+  const [newPasswordSuccessChanged, setNewPasswordSuccessChanged] = useState(false)
   const [errDataIncorrectedText, setErrDataIncorrectedText] = useState(false)
   const [oldPasswordsDontMatch, setOldPasswordsDontMatch] = useState(false)
   const [newPasswordsDontMatch, setNewPasswordsDontMatch] = useState(false)
@@ -24,12 +23,11 @@ export const PersonalInfo: FC = (): JSX.Element => {
     email: '',
     telefone: '',
   })
-  const [requestChangedPassword, setRequestChangedPassword] =
-    useState<IChangedPassword>({
-      oldPassword: 'Введите старый пароль',
-      newPassword: 'Введите новый пароль',
-      repeatNewPassword: 'Повторите новый пароль',
-    })
+  const [requestChangedPassword, setRequestChangedPassword] = useState<IChangedPassword>({
+    oldPassword: 'Введите старый пароль',
+    newPassword: 'Введите новый пароль',
+    repeatNewPassword: 'Повторите новый пароль',
+  })
 
   useEffect(() => {
     axios
@@ -74,8 +72,7 @@ export const PersonalInfo: FC = (): JSX.Element => {
 
   const isNewDataUserLength = (): boolean => {
     if (
-      (changedInfoData.name.length > 1 &&
-        changedInfoData.lastName.length > 3) ||
+      (changedInfoData.name.length > 1 && changedInfoData.lastName.length > 3) ||
       changedInfoData.email.length > 4 ||
       changedInfoData.telefone.length > 4
     ) {
@@ -217,10 +214,7 @@ export const PersonalInfo: FC = (): JSX.Element => {
       : 'Повторите новый пароль'
 
   const repeatNewDataPassword = (): boolean => {
-    if (
-      requestChangedPassword.newPassword ===
-      requestChangedPassword.repeatNewPassword
-    ) {
+    if (requestChangedPassword.newPassword === requestChangedPassword.repeatNewPassword) {
       return true
     } else return false
   }
@@ -391,45 +385,29 @@ export const PersonalInfo: FC = (): JSX.Element => {
         </>
       )}
       {successDataChanged || newPasswordSuccessChanged ? (
-        <div className={styles.dataSuccessChangedText}>
-          Данные были успешно изменены.
-        </div>
+        <div className={styles.dataSuccessChangedText}>Данные были успешно изменены.</div>
       ) : null}
       {errDataChanged ? (
-        <div className={styles.createNewDataErrText}>
-          Возникла непредвиденная ошибка.
-        </div>
+        <div className={styles.createNewDataErrText}>Возникла непредвиденная ошибка.</div>
       ) : null}
       {errDataIncorrectedText ? (
-        <div className={styles.incorrectedNewDataCreateText}>
-          Введите корректные данные.
-        </div>
+        <div className={styles.incorrectedNewDataCreateText}>Введите корректные данные.</div>
       ) : null}
       {newPasswordsDontMatch ? (
-        <div className={styles.incorrectedNewDataCreateText}>
-          Новые пароли не совпадают.
-        </div>
+        <div className={styles.incorrectedNewDataCreateText}>Новые пароли не совпадают.</div>
       ) : null}
       {oldPasswordsDontMatch ? (
-        <div className={styles.incorrectedNewDataCreateText}>
-          Старые пароли не совпадают.
-        </div>
+        <div className={styles.incorrectedNewDataCreateText}>Старые пароли не совпадают.</div>
       ) : null}
       <div className={styles.changedDataContainer}>
         {changedUserPassword ? (
-          <div
-            onClick={onChangedPasswordRequest}
-            className={stylesChangedDataBtnActive}
-          >
+          <div onClick={onChangedPasswordRequest} className={stylesChangedDataBtnActive}>
             Сохранить изменения
           </div>
         ) : (
           <>
             {changedPersonalInfo ? (
-              <div
-                onClick={changePersonalInfo}
-                className={stylesChangedDataBtnActive}
-              >
+              <div onClick={changePersonalInfo} className={stylesChangedDataBtnActive}>
                 Сохранить изменения
               </div>
             ) : (
@@ -447,10 +425,7 @@ export const PersonalInfo: FC = (): JSX.Element => {
             Отменить изменения
           </div>
         ) : (
-          <div
-            onClick={() => setChangedUserPassword(true)}
-            className={styles.changedPassword}
-          >
+          <div onClick={() => setChangedUserPassword(true)} className={styles.changedPassword}>
             Изменить пароль
           </div>
         )}

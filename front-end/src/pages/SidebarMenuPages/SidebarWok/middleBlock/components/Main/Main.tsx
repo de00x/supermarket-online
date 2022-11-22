@@ -119,25 +119,16 @@ export const Main: FC = () => {
         <div className={stylesSort}>
           <div>Сортировка</div>
           <div className={styles.sortByContainer}>
-            <div
-              className={styles.currentSortBy}
-              onClick={() => setSortFly(!sortFly)}
-            >
+            <div className={styles.currentSortBy} onClick={() => setSortFly(!sortFly)}>
               {sortBy}
             </div>
             <div>
               {!sortFly ? (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▼
                 </div>
               ) : (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▲
                 </div>
               )}
@@ -161,12 +152,7 @@ export const Main: FC = () => {
           <>
             {allWoks.map((wok) => (
               <div key={wok.id} className={styles.item}>
-                <img
-                  src={wok.img}
-                  alt="item1"
-                  width={'226px'}
-                  height={'190px'}
-                />
+                <img src={wok.img} alt="item1" width={'226px'} height={'190px'} />
                 <div className={styles.setName}>{wok.name}</div>
                 <div className={styles.buyProduct}>
                   <div>от {wok.price} ₽</div>

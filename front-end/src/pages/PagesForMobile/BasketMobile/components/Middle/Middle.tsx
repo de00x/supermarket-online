@@ -64,10 +64,7 @@ export const Middle: FC = (): JSX.Element => {
               </div>
             </div>
           )}
-          <div
-            onClick={() => setAccessClearAllItem(true)}
-            className={styles.clearBasket}
-          >
+          <div onClick={() => setAccessClearAllItem(true)} className={styles.clearBasket}>
             Очистить всю корзину
           </div>
           <Link to={'/delivery'}>
@@ -79,9 +76,7 @@ export const Middle: FC = (): JSX.Element => {
           <div className={styles.basketClearHeader}>Корзина пустая 😕</div>
           <div className={styles.basketClearText}>
             Вероятнее всего, вы еще ничего не заказывали.
-            <div>
-              Для того, чтобы сделать заказ, перейдите на главную страницу.
-            </div>
+            <div>Для того, чтобы сделать заказ, перейдите на главную страницу.</div>
           </div>
           <div className={styles.basketClearImg}>
             <img src={basketClearImg} alt="basketClearImg" />

@@ -63,10 +63,7 @@ export const Main: FC = () => {
               </div>
             </div>
             <div className={styles.footerBtnContainer}>
-              <div
-                className={styles.backToMain}
-                onClick={() => navigate('/main')}
-              >
+              <div className={styles.backToMain} onClick={() => navigate('/main')}>
                 ❮ Вернуться на главную
               </div>
               <Link to={'/delivery'}>
@@ -80,9 +77,7 @@ export const Main: FC = () => {
           <div className={styles.main}>
             <div>Корзина пустая 😕</div>
             <div>Вероятнее всего, вы еще ничего не заказывали.</div>
-            <div>
-              Для того, чтобы сделать заказ, перейдите на главную страницу.
-            </div>
+            <div>Для того, чтобы сделать заказ, перейдите на главную страницу.</div>
             <div>
               <img src={basketImg} alt="basketImg" />
             </div>

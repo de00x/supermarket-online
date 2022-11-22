@@ -4,11 +4,7 @@ import { ReactComponent as BtnMinus } from './img/buttonMinus.svg'
 import { ReactComponent as BtnPlus } from './img/buttonPlus.svg'
 import { FC } from 'react'
 import styles from './styles.module.scss'
-import {
-  addItem,
-  minusItem,
-  removeItem,
-} from '../../../../../redux/slices/slice'
+import { addItem, minusItem, removeItem } from '../../../../../redux/slices/slice'
 import { useDispatch } from 'react-redux'
 
 interface BasketItemsProps {
@@ -20,14 +16,7 @@ interface BasketItemsProps {
   count: number
 }
 
-export const BasketItem: FC<BasketItemsProps> = ({
-  id,
-  img,
-  name,
-  info,
-  price,
-  count,
-}) => {
+export const BasketItem: FC<BasketItemsProps> = ({ id, img, name, info, price, count }) => {
   const dispatch = useDispatch()
 
   /// onClick //
@@ -57,12 +46,7 @@ export const BasketItem: FC<BasketItemsProps> = ({
       <div>
         <div className={styles.item}>
           <div className={styles.itemImg}>
-            <img
-              src={img}
-              alt="basketItemimg"
-              width={'130px'}
-              height={'100px'}
-            />
+            <img src={img} alt="basketItemimg" width={'130px'} height={'100px'} />
           </div>
           <div className={styles.productInfo}>
             <div>{name}</div>
@@ -78,10 +62,7 @@ export const BasketItem: FC<BasketItemsProps> = ({
             </button>
           </div>
           <div className={styles.itemPrice}>{price}</div>
-          <button
-            onClick={() => deleteProduct(id)}
-            className={styles.deleteProduct}
-          >
+          <button onClick={() => deleteProduct(id)} className={styles.deleteProduct}>
             <BtnDelete />
           </button>
         </div>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import styles from './styles.module.scss'
 
 interface ILoginProps {
-  setBlockAuthorization: Function
+  setBlockAuthorization: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const Login: FC<ILoginProps> = ({ setBlockAuthorization }) => {
@@ -44,9 +44,7 @@ export const Login: FC<ILoginProps> = ({ setBlockAuthorization }) => {
               <input
                 placeholder="Логин"
                 value={userData.login}
-                onChange={(e) =>
-                  setUserData({ ...userData, login: e.target.value })
-                }
+                onChange={(e) => setUserData({ ...userData, login: e.target.value })}
                 type="login"
               ></input>
             </div>
@@ -54,9 +52,7 @@ export const Login: FC<ILoginProps> = ({ setBlockAuthorization }) => {
               <input
                 placeholder="Пароль"
                 value={userData.password}
-                onChange={(e) =>
-                  setUserData({ ...userData, password: e.target.value })
-                }
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                 type="password"
               ></input>
             </div>
@@ -68,9 +64,7 @@ export const Login: FC<ILoginProps> = ({ setBlockAuthorization }) => {
             </div>
             {dataError && (
               <>
-                <div className={styles.dataErr}>
-                  Такой учетной записи не существует
-                </div>
+                <div className={styles.dataErr}>Такой учетной записи не существует</div>
               </>
             )}
             <div className={styles.btnContainer}>

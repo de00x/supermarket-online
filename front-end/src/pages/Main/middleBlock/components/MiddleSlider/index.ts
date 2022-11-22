@@ -1,1 +1,1 @@
-export { MiddleSlider } from "./MiddleSlider";
+export { MiddleSlider } from './MiddleSlider'

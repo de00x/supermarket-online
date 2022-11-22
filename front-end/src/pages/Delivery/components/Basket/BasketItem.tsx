@@ -15,14 +15,7 @@ interface BasketItemsProps {
   count: number
 }
 
-export const BasketItem: FC<BasketItemsProps> = ({
-  id,
-  img,
-  name,
-  info,
-  price,
-  count,
-}) => {
+export const BasketItem: FC<BasketItemsProps> = ({ id, img, name, info, price, count }) => {
   const dispatch = useDispatch()
 
   const minusProduct = (id: string): void => {

@@ -68,9 +68,7 @@ export const Registered: FC = () => {
                 <input
                   placeholder="Логин"
                   value={userData.login}
-                  onChange={(e) =>
-                    setUserData({ ...userData, login: e.target.value })
-                  }
+                  onChange={(e) => setUserData({ ...userData, login: e.target.value })}
                   type="login"
                 ></input>
               </div>
@@ -78,21 +76,15 @@ export const Registered: FC = () => {
                 <input
                   placeholder="Пароль"
                   value={userData.password}
-                  onChange={(e) =>
-                    setUserData({ ...userData, password: e.target.value })
-                  }
+                  onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                   type="password"
                 ></input>
               </div>
               {registerError && (
-                <div className={styles.registerError}>
-                  Такой пользователь уже существует
-                </div>
+                <div className={styles.registerError}>Такой пользователь уже существует</div>
               )}
               {incorrectInputData ? (
-                <div className={styles.incorrectData}>
-                  Введите корректные данные !
-                </div>
+                <div className={styles.incorrectData}>Введите корректные данные !</div>
               ) : null}
               <div className={styles.btnContainer}>
                 <button type="submit" className={styles.signBtn}>

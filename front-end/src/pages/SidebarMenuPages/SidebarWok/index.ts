@@ -1,1 +1,1 @@
-export { Wok } from "./Wok";
+export { Wok } from './Wok'

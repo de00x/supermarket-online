@@ -7,12 +7,9 @@ import styles from '../styles.module.scss'
 export const Logout: FC = (): JSX.Element => {
   const [logoutBtn, setLogoutBtn] = useState(false)
   const [deleteAccountBtn, setDeleteAccountBtn] = useState(false)
-  const [confirmationDeleteAccount, setConfirmationDeleteAccount] =
-    useState(false)
-  const [
-    inputSuccessConformationDeleteAccount,
-    setInputSuccessConformationDeleteAccount,
-  ] = useState('')
+  const [confirmationDeleteAccount, setConfirmationDeleteAccount] = useState(false)
+  const [inputSuccessConformationDeleteAccount, setInputSuccessConformationDeleteAccount] =
+    useState('')
   const navigate = useNavigate()
 
   /// onClick ///
@@ -58,62 +55,42 @@ export const Logout: FC = (): JSX.Element => {
   /// longLogic ///
 
   /// styles ///
-  const stylesDeleteAccountConfirmationBtn = cn(
-    styles.deleteAccountConfirmationBtn,
-    {
-      [styles.deleteAccountConfirmationBtnActive]: confirmationDeleteAccount,
-    }
-  )
-  const styleDeleteAccountBtnConfirmation = cn(
-    styles.deleteAccountBtnConfirmation,
-    { [styles.deleteAccountBtnConfirmationActive]: confirmationDeleteAccount }
-  )
+  const stylesDeleteAccountConfirmationBtn = cn(styles.deleteAccountConfirmationBtn, {
+    [styles.deleteAccountConfirmationBtnActive]: confirmationDeleteAccount,
+  })
+  const styleDeleteAccountBtnConfirmation = cn(styles.deleteAccountBtnConfirmation, {
+    [styles.deleteAccountBtnConfirmationActive]: confirmationDeleteAccount,
+  })
   const stylesLogoutConfirmationBtn = cn(
     cn(styles.logoutBtnConfirmation, {
       [styles.logoutConfirmationBtnNotActive]: confirmationDeleteAccount,
     })
   )
-  const stylesBtnSuccessConformationDeleteAccount = cn(
-    styles.btnSuccessConformationDeleteAccount,
-    {
-      [styles.btnSuccessConformationDeleteAccountActive]:
-        currentAccDeleteBtnSuccess(),
-    }
-  )
+  const stylesBtnSuccessConformationDeleteAccount = cn(styles.btnSuccessConformationDeleteAccount, {
+    [styles.btnSuccessConformationDeleteAccountActive]: currentAccDeleteBtnSuccess(),
+  })
   /// styles ///
 
   return (
     <>
       {logoutBtn ? (
         <div className={stylesLogoutConfirmationBtn}>
-          <div
-            onClick={successLogoutBtn}
-            className={styles.logoutConfirmationBtn}
-          >
+          <div onClick={successLogoutBtn} className={styles.logoutConfirmationBtn}>
             Подтвердить
           </div>
-          <div
-            onClick={() => setLogoutBtn(!logoutBtn)}
-            className={styles.logoutCancelBtn}
-          >
+          <div onClick={() => setLogoutBtn(!logoutBtn)} className={styles.logoutCancelBtn}>
             Отменить
           </div>
         </div>
       ) : (
-        <div
-          onClick={() => setLogoutBtn(!logoutBtn)}
-          className={styles.logoutBtn}
-        >
+        <div onClick={() => setLogoutBtn(!logoutBtn)} className={styles.logoutBtn}>
           Выйти из аккаунта
         </div>
       )}
       {deleteAccountBtn ? (
         <>
           <div className={styleDeleteAccountBtnConfirmation}>
-            <div
-              onClick={confirmationAccDelBtn}
-              className={stylesDeleteAccountConfirmationBtn}
-            >
+            <div onClick={confirmationAccDelBtn} className={stylesDeleteAccountConfirmationBtn}>
               Подтвердить
             </div>
             <div onClick={cancelAccDelBtn} className={styles.logoutCancelBtn}>
@@ -125,27 +102,18 @@ export const Logout: FC = (): JSX.Element => {
               <div className={styles.confirmationDeleteAccountCountainer}>
                 <div className={styles.confirmationDeleteAccountText}>
                   Введите id в поле ввода и нажмите удалить.
-                  <div>
-                    Внимание! При удалении аккаунта вся информация удаляется.
-                  </div>
+                  <div>Внимание! При удалении аккаунта вся информация удаляется.</div>
                 </div>
-                <div className={styles.confirmationDeleteId}>
-                  {localStorage.getItem('id')}
-                </div>
+                <div className={styles.confirmationDeleteId}>{localStorage.getItem('id')}</div>
                 <div className={styles.inputSuccessConformationDeleteAccount}>
                   <input
                     value={inputSuccessConformationDeleteAccount}
-                    onChange={(e) =>
-                      setInputSuccessConformationDeleteAccount(e.target.value)
-                    }
+                    onChange={(e) => setInputSuccessConformationDeleteAccount(e.target.value)}
                     placeholder="Введите id"
                   />
                 </div>
                 <div className={stylesBtnSuccessConformationDeleteAccount}>
-                  <button
-                    onClick={finalDeleteUserRequest}
-                    disabled={!currentAccDeleteBtnSuccess()}
-                  >
+                  <button onClick={finalDeleteUserRequest} disabled={!currentAccDeleteBtnSuccess()}>
                     Удалить
                   </button>
                 </div>

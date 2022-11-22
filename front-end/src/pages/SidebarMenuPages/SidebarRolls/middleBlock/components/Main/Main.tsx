@@ -119,25 +119,16 @@ export const Main: FC = () => {
         <div className={stylesSort}>
           <div>Сортировка</div>
           <div className={styles.sortByContainer}>
-            <div
-              className={styles.currentSortBy}
-              onClick={() => setSortFly(!sortFly)}
-            >
+            <div className={styles.currentSortBy} onClick={() => setSortFly(!sortFly)}>
               {sortBy}
             </div>
             <div>
               {!sortFly ? (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▼
                 </div>
               ) : (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▲
                 </div>
               )}
@@ -161,12 +152,7 @@ export const Main: FC = () => {
           <>
             {allRolls.map((rolls) => (
               <div key={rolls.id} className={styles.item}>
-                <img
-                  src={rolls.img}
-                  alt="item1"
-                  width={'226px'}
-                  height={'190px'}
-                />
+                <img src={rolls.img} alt="item1" width={'226px'} height={'190px'} />
                 <div className={styles.setName}>{rolls.name}</div>
                 <div className={styles.buyProduct}>
                   <div>от {rolls.price} ₽</div>

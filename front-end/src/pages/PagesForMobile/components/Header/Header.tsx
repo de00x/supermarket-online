@@ -27,14 +27,8 @@ export const Header: FC = (): JSX.Element => {
       .catch((err) => console.log('err', err))
     const handleClickOutside = (event: MouseEvent): void => {
       const _event = event as PopupClick
-      if (
-        refCloseFlySearch.current != null &&
-        !_event.path.includes(refCloseFlySearch.current)
-      ) {
-        if (
-          inputRef.current != null &&
-          !_event.path.includes(inputRef.current)
-        ) {
+      if (refCloseFlySearch.current != null && !_event.path.includes(refCloseFlySearch.current)) {
+        if (inputRef.current != null && !_event.path.includes(inputRef.current)) {
           setOpenFlySearch(false)
         }
       }
@@ -116,23 +110,14 @@ export const Header: FC = (): JSX.Element => {
                     maxLength={17}
                     placeholder="Глобальный поиск"
                   />
-                  <Close
-                    onClick={onClickInput}
-                    className={styles.headerCloseInput}
-                  />
+                  <Close onClick={onClickInput} className={styles.headerCloseInput} />
                 </div>
               </div>
               {openFlySearch ? (
-                <div
-                  className={styles.flySearchContainer}
-                  ref={refCloseFlySearch}
-                >
+                <div className={styles.flySearchContainer} ref={refCloseFlySearch}>
                   {searchProduct
                     .filter((obj) =>
-                      obj.name
-                        .trim()
-                        .toLowerCase()
-                        .includes(valueSearch.trim().toLowerCase())
+                      obj.name.trim().toLowerCase().includes(valueSearch.trim().toLowerCase())
                     )
                     .map((obj) => (
                       <div

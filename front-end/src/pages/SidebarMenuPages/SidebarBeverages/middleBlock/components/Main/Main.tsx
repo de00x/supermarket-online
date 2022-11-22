@@ -99,7 +99,7 @@ export const Main: FC = () => {
       {localStorage.getItem('login') === null ? (
         <div className={stylesErrAuthContainerBgdRed}>
           <div className={stylesErrAuth}>
-            Что бы сделать заказ
+            Что бы сделать заказ а
             <div>
               Вам необходимо{' '}
               <Link to={'/main'}>
@@ -116,25 +116,16 @@ export const Main: FC = () => {
         <div className={stylesSort}>
           <div>Сортировка</div>
           <div className={styles.sortByContainer}>
-            <div
-              className={styles.currentSortBy}
-              onClick={() => setSortFly(!sortFly)}
-            >
+            <div className={styles.currentSortBy} onClick={() => setSortFly(!sortFly)}>
               {sortBy}
             </div>
             <div>
               {!sortFly ? (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▼
                 </div>
               ) : (
-                <div
-                  className={styles.sortByArrow}
-                  onClick={() => setSortFly(!sortFly)}
-                >
+                <div className={styles.sortByArrow} onClick={() => setSortFly(!sortFly)}>
                   ▲
                 </div>
               )}
@@ -158,18 +149,11 @@ export const Main: FC = () => {
           <>
             {allBeverages.map((beverage) => (
               <div key={beverage.id} className={styles.item}>
-                <img
-                  src={beverage.img}
-                  alt="item1"
-                  width={'226px'}
-                  height={'190px'}
-                />
+                <img src={beverage.img} alt="item1" width={'226px'} height={'190px'} />
                 <div className={styles.setName}>{beverage.name}</div>
                 <div className={styles.buyProduct}>
                   <div>от {beverage.price} ₽</div>
-                  <div onClick={() => addProductToBasket(beverage)}>
-                    В корзину
-                  </div>
+                  <div onClick={() => addProductToBasket(beverage)}>В корзину</div>
                 </div>
               </div>
             ))}

@@ -6,12 +6,9 @@ import cn from 'classnames'
 import styles from '../styles.module.scss'
 
 export const Delivery: FC = (): JSX.Element => {
-  const [newAddressSuccessAddedText, setNewAddressSuccessAddedText] =
-    useState(false)
-  const [newAddressErrorAddedText, setNewAddressErrorAddedText] =
-    useState(false)
-  const [addressEditedSuccessText, setAddressEditedSuccessText] =
-    useState(false)
+  const [newAddressSuccessAddedText, setNewAddressSuccessAddedText] = useState(false)
+  const [newAddressErrorAddedText, setNewAddressErrorAddedText] = useState(false)
+  const [addressEditedSuccessText, setAddressEditedSuccessText] = useState(false)
   const [editedAddressContainer, setEditedAddressContainer] = useState(false)
   const [errAddNewAddressLength, setErrAddNewAddressLength] = useState(false)
   const [currentNumberInAddress, setCurrentNumberInAddress] = useState('')
@@ -21,9 +18,7 @@ export const Delivery: FC = (): JSX.Element => {
   const [stateNewAddressInput, setStateNewAddressInput] = useState({
     newAddress: '',
   })
-  const [allDeliveryAddress, setAllDeliveryAddress] = useState<
-    IAllDeliveryAddress[]
-  >([])
+  const [allDeliveryAddress, setAllDeliveryAddress] = useState<IAllDeliveryAddress[]>([])
 
   useEffect(() => {
     axios
@@ -105,10 +100,7 @@ export const Delivery: FC = (): JSX.Element => {
       newAddress: '',
     })
   }
-  const openInputEditCurrentAddress = (
-    numberInAddress: string,
-    deliveryAddress: string
-  ): void => {
+  const openInputEditCurrentAddress = (numberInAddress: string, deliveryAddress: string): void => {
     setStateNewAddressInput({
       ...stateNewAddressInput,
       newAddress: deliveryAddress,
@@ -143,23 +135,17 @@ export const Delivery: FC = (): JSX.Element => {
 
   /// styles ///
   const stylesAddNewAddressBtnContainer = cn(styles.addNewAddressBtnContainer, {
-    [styles.addNewAddressBtnContainerActive]:
-      addNewAddressInput || editedAddressContainer,
+    [styles.addNewAddressBtnContainerActive]: addNewAddressInput || editedAddressContainer,
   })
-  const stylesEditedAddressInputContainer = cn(
-    styles.editedAddressInputContainer,
-    {
-      [styles.editedAddressInputContainerActive]: newAddressErrorAddedText,
-    }
-  )
+  const stylesEditedAddressInputContainer = cn(styles.editedAddressInputContainer, {
+    [styles.editedAddressInputContainerActive]: newAddressErrorAddedText,
+  })
   const stylesAddNewAddressBtn = cn(styles.addNewAddressBtn, {
-    [styles.addNewAddressBtnActive]:
-      addNewAddressInput || editedAddressContainer,
+    [styles.addNewAddressBtnActive]: addNewAddressInput || editedAddressContainer,
   })
-  const stylesAddNewAddressInputContainer = cn(
-    styles.addNewAddressInputContainer,
-    { [styles.addNewAddressInputErr]: errAddNewAddressLength }
-  )
+  const stylesAddNewAddressInputContainer = cn(styles.addNewAddressInputContainer, {
+    [styles.addNewAddressInputErr]: errAddNewAddressLength,
+  })
   /// styles ///
 
   return (
@@ -177,23 +163,16 @@ export const Delivery: FC = (): JSX.Element => {
         <>
           {allDeliveryAddress.map((address) => (
             <div key={address.numberInAddress}>
-              <div className={styles.deliveryAddressText}>
-                {address.deliveryAddress}
-              </div>
+              <div className={styles.deliveryAddressText}>{address.deliveryAddress}</div>
               <div className={styles.deliveryAddressChange}>
                 <div
                   onClick={() =>
-                    openInputEditCurrentAddress(
-                      address.numberInAddress,
-                      address.deliveryAddress
-                    )
+                    openInputEditCurrentAddress(address.numberInAddress, address.deliveryAddress)
                   }
                 >
                   Изменить адрес
                 </div>
-                <div
-                  onClick={() => removeCurrentAddress(address.numberInAddress)}
-                >
+                <div onClick={() => removeCurrentAddress(address.numberInAddress)}>
                   Удалить адрес
                 </div>
               </div>
@@ -230,26 +209,17 @@ export const Delivery: FC = (): JSX.Element => {
         </div>
       ) : null}
       {errAddNewAddressLength || newAddressErrorAddedText ? (
-        <div className={styles.errAddNewAddressLength}>
-          Минимальное количество символов - 10.
-        </div>
+        <div className={styles.errAddNewAddressLength}>Минимальное количество символов - 10.</div>
       ) : null}
       {newAddressSuccessAddedText ? (
-        <div className={styles.newAddressSuccessAddedText}>
-          Вы успешно добавили новый адрес.
-        </div>
+        <div className={styles.newAddressSuccessAddedText}>Вы успешно добавили новый адрес.</div>
       ) : null}
       {addressEditedSuccessText ? (
-        <div className={styles.newAddressSuccessAddedText}>
-          Адрес был успешно изменен.
-        </div>
+        <div className={styles.newAddressSuccessAddedText}>Адрес был успешно изменен.</div>
       ) : null}
       <div className={stylesAddNewAddressBtnContainer}>
         {!editedAddressContainer ? (
-          <div
-            onClick={openInputAddNewAddress}
-            className={stylesAddNewAddressBtn}
-          >
+          <div onClick={openInputAddNewAddress} className={stylesAddNewAddressBtn}>
             Добавить новый адрес
           </div>
         ) : null}
@@ -259,10 +229,7 @@ export const Delivery: FC = (): JSX.Element => {
           </div>
         ) : null}
         {addNewAddressInput || editedAddressContainer ? (
-          <div
-            onClick={closeInputAddNewAddress}
-            className={styles.addNewAddressBtn}
-          >
+          <div onClick={closeInputAddNewAddress} className={styles.addNewAddressBtn}>
             Отменить изменения
           </div>
         ) : null}

@@ -17,20 +17,13 @@ export const SliderMenu: FC = () => {
             <div className={styles.personalTextOne}>Что бы сделать заказ</div>
             <div className={styles.personalTextTwo}>
               Вам необходимо
-              <span onClick={() => setBlockAuthorization(!blockAuthorization)}>
-                авторизоваться
-              </span>
+              <span onClick={() => setBlockAuthorization(!blockAuthorization)}>авторизоваться</span>
             </div>
-            {blockAuthorization && (
-              <>
-                <Login setBlockAuthorization={setBlockAuthorization} />
-              </>
-            )}
+            {/* blockAuthorization, if max-width < 1500px  */}
+            {blockAuthorization && <Login setBlockAuthorization={setBlockAuthorization} />}
           </>
         )}
       </div>
-      {/* blockAuthorization, if max-width < 1500px  */}
-
       {/* blockAuthorization, if max-width > 1500px  */}
       {localStorage.getItem('login') === null ? (
         <div className={styles.needAuthText}>

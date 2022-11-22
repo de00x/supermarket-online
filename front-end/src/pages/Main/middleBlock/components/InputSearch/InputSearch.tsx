@@ -25,14 +25,8 @@ export const InputSearch: FC<IInputProps> = ({ setSearchOpen }) => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
       const _event = event as PopupClick
-      if (
-        refCloseFlySearch.current != null &&
-        !_event.path.includes(refCloseFlySearch.current)
-      ) {
-        if (
-          inputRef.current != null &&
-          !_event.path.includes(inputRef.current)
-        ) {
+      if (refCloseFlySearch.current != null && !_event.path.includes(refCloseFlySearch.current)) {
+        if (inputRef.current != null && !_event.path.includes(inputRef.current)) {
           setFlySearch(false)
         }
       }
@@ -78,17 +72,11 @@ export const InputSearch: FC<IInputProps> = ({ setSearchOpen }) => {
           ref={inputRef}
         ></input>
         {flySearch && (
-          <div
-            ref={refCloseFlySearch}
-            className={styles.activeFlySearchContainer}
-          >
+          <div ref={refCloseFlySearch} className={styles.activeFlySearchContainer}>
             <div className={styles.activeFlySearch}>
               {searchProduct
                 .filter((obj) =>
-                  obj.name
-                    .trim()
-                    .toLowerCase()
-                    .includes(searchValue.trim().toLowerCase())
+                  obj.name.trim().toLowerCase().includes(searchValue.trim().toLowerCase())
                 )
                 .map((obj) => (
                   <div

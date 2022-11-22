@@ -62,9 +62,7 @@ export const Header: FC = () => {
                       <div className={styles.cartWrapper}>
                         <Link to={'/basket'}>
                           <div className={styles.cartContainer}>
-                            <div className={styles.cartAllPrice}>
-                              {totalPrice} ₽
-                            </div>
+                            <div className={styles.cartAllPrice}>{totalPrice} ₽</div>
                             <div className={styles.cartAllProduct}>
                               <Cart />
                               {totalCount}
@@ -75,29 +73,20 @@ export const Header: FC = () => {
                       <div className={styles.personalAreaContainer}>
                         {!personalAccountExit ? (
                           <>
-                            <Link
-                              className={styles.personalAccount}
-                              to={'/personal'}
-                            >
+                            <Link className={styles.personalAccount} to={'/personal'}>
                               <Account />
                             </Link>
                             <div className={styles.accountLogout}>
-                              <Logout
-                                onClick={() => setPersonalAccountExit(true)}
-                              />
+                              <Logout onClick={() => setPersonalAccountExit(true)} />
                             </div>
                           </>
                         ) : (
                           <>
                             <div className={styles.personalAccount}>
-                              <SuccessBtn
-                                onClick={() => successExitOnAccount()}
-                              />
+                              <SuccessBtn onClick={() => successExitOnAccount()} />
                             </div>
                             <div className={styles.accountLogout}>
-                              <CancelBtn
-                                onClick={() => setPersonalAccountExit(false)}
-                              />
+                              <CancelBtn onClick={() => setPersonalAccountExit(false)} />
                             </div>
                           </>
                         )}

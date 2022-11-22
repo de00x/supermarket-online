@@ -7,11 +7,10 @@ import styles from './styles.module.scss'
 export const AuthorizationWindow: FC = (): JSX.Element => {
   const [accountDataIsCorrected, setAccountDataIsCorrected] = useState(false)
   const [accountNotExist, setAccountNotExist] = useState(false)
-  const [authorizationData, setAuthorizationData] =
-    useState<IAuthorizationData>({
-      login: '',
-      password: '',
-    })
+  const [authorizationData, setAuthorizationData] = useState<IAuthorizationData>({
+    login: '',
+    password: '',
+  })
 
   /// onClick ///
   const onCLickAccountExists = (res: AxiosResponse): void => {
@@ -30,10 +29,7 @@ export const AuthorizationWindow: FC = (): JSX.Element => {
     }, 7000)
   }
   const onSubmitLogin = (): void => {
-    if (
-      authorizationData.login.length < 4 ||
-      authorizationData.password.length < 4
-    ) {
+    if (authorizationData.login.length < 4 || authorizationData.password.length < 4) {
       setAccountDataIsCorrected(true)
       setTimeout(() => {
         setAccountDataIsCorrected(false)
@@ -77,14 +73,10 @@ export const AuthorizationWindow: FC = (): JSX.Element => {
         placeholder="Пароль"
       />
       {accountNotExist ? (
-        <div className={styles.accountNotExist}>
-          Такой учётной записи не существует !
-        </div>
+        <div className={styles.accountNotExist}>Такой учётной записи не существует !</div>
       ) : null}
       {accountDataIsCorrected ? (
-        <div className={styles.accountDataInCorrected}>
-          Введите корректные данные !
-        </div>
+        <div className={styles.accountDataInCorrected}>Введите корректные данные !</div>
       ) : null}
       <div className={styles.authorizationBtnContainer}>
         <div onClick={onSubmitLogin} className={styles.authorizationBtn}>

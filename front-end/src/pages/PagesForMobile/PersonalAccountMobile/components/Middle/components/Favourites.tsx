@@ -9,9 +9,7 @@ export const Favourites: FC = (): JSX.Element => {
       <div className={styles.favouritesInfoHeader}>
         <FavouritesIcon /> Избранное
       </div>
-      <div className={styles.favouritesInfoText}>
-        У вас в избранном 0 товаров
-      </div>
+      <div className={styles.favouritesInfoText}>У вас в избранном 0 товаров</div>
       <Link to={'/main'}>
         <div className={styles.favouritesInfoBtn}>Изменить</div>
       </Link>

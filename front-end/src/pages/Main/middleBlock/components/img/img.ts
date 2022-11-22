@@ -1,8 +1,6 @@
 export const middleSlider1 = 'https://i.ibb.co/nrzNZSY/middle-Slider1.jpg'
-export const middleSlider2 =
-  'https://vasabisushi.ru/wp-content/uploads/2019/04/naslajdenie.jpg'
-export const middleSlider3 =
-  'https://vasabisushi.ru/wp-content/uploads/2019/04/banderos.jpg'
+export const middleSlider2 = 'https://vasabisushi.ru/wp-content/uploads/2019/04/naslajdenie.jpg'
+export const middleSlider3 = 'https://vasabisushi.ru/wp-content/uploads/2019/04/banderos.jpg'
 export const middleSlider4 = 'https://i.ibb.co/t3mGVT4/middle-Slider4.jpg'
 export const middleSlider5 = 'https://i.ibb.co/KLrS1hc/middle-Slider5.jpg'
 export const middleSlider6 = 'https://i.ibb.co/n7QYKp0/middle-Slider6.jpg'
