@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { ReactComponent as Beverages } from './img/beverages.svg'
 import { ReactComponent as FoodSets } from './img/foodSets.svg'
 import { ReactComponent as CornDogs } from './img/cornDogs.svg'
@@ -10,9 +9,10 @@ import { ReactComponent as Sushi } from './img/sushi.svg'
 import { ReactComponent as Soups } from './img/soups.svg'
 import { ReactComponent as WOK } from './img/WOK.svg'
 import { Link } from 'react-router-dom'
+import { FC } from 'react'
 import logo from './img/logo.svg'
 import vector from './img/vector.svg'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const Sidebar: FC = () => {
   return (

@@ -1,12 +1,9 @@
-import { FC, SyntheticEvent, useState } from 'react'
+import { DataLoginInput, DataPassInput } from './inputs'
+import { ILoginProps, IUserData } from './types/types'
+import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IUserData } from './types'
-import axios from 'axios'
-import styles from './styles.module.scss'
-
-interface ILoginProps {
-  setBlockAuthorization: React.Dispatch<React.SetStateAction<boolean>>
-}
+import styles from './styles/styles.module.scss'
+import LoginControllers from './services/LoginControllers'
 
 export const Login: FC<ILoginProps> = ({ setBlockAuthorization }) => {
   const [dataError, setDataError] = useState(false)
@@ -14,47 +11,21 @@ export const Login: FC<ILoginProps> = ({ setBlockAuthorization }) => {
     login: '',
     password: '',
   })
-  const submit = (e: SyntheticEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    axios
-      .post('/authorize', {
-        login: userData.login,
-        password: userData.password,
-      })
-      .then((res) => {
-        if (res.data.isLogin === false) {
-          setDataError(true)
-        } else if (res.data.isLogin === true) {
-          setBlockAuthorization(false)
-          localStorage.setItem('login', res.data.login)
-          localStorage.setItem('id', res.data.id)
-          window.location.reload()
-        }
-      })
-      .catch(() => {
-        setDataError(true)
-      })
-  }
+
+  /// functions ///
+  const { submit } = LoginControllers({ userData, setDataError, setBlockAuthorization })
+  /// functions ///
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.form}>
           <form onSubmit={submit}>
             <div className={styles.formInput}>
-              <input
-                placeholder="Логин"
-                value={userData.login}
-                onChange={(e) => setUserData({ ...userData, login: e.target.value })}
-                type="login"
-              ></input>
+              <DataLoginInput userData={userData} setUserData={setUserData} />
             </div>
             <div className={styles.formInput}>
-              <input
-                placeholder="Пароль"
-                value={userData.password}
-                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-                type="password"
-              ></input>
+              <DataPassInput userData={userData} setUserData={setUserData} />
             </div>
             <div className={styles.remember}>
               <label>

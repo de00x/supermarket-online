@@ -1,5 +1,5 @@
 import { ReactComponent as Arrow } from '../img/arrowLeft.svg'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   middleSlider1,
@@ -11,14 +11,15 @@ import {
   middleSlider7,
   middleSlider8,
 } from '../img/img'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import MiddleSliderService from './services/MiddleSlider.service'
 
 export const MiddleSlider: FC = () => {
   const [initialState, setInitialState] = useState(false)
 
-  useEffect(() => {
-    localStorage.setItem('location', 'main')
-  }, [])
+  ///  useEffects ///
+  MiddleSliderService.SetNewLocation()
+  ///  useEffects ///
 
   return (
     <>

@@ -1,36 +1,17 @@
-import { ISets } from '../../../SidebarMenuPages/SidebarSets/middleBlock/components/Main/types'
-import { addItem, minusItem, removeItem } from '../../../../redux/slices/slice'
 import { ReactComponent as BtnMinus } from '../img/buttonMinus.svg'
 import { ReactComponent as BtnPlus } from '../img/buttonPlus.svg'
+import { BasketItemsProps } from './types/Basket.types'
 import { useDispatch } from 'react-redux'
 import { FC } from 'react'
-import styles from './styles.module.scss'
-
-interface BasketItemsProps {
-  id: string
-  img: string
-  name: string
-  info: string
-  price: number
-  count: number
-}
+import styles from './styles/styles.module.scss'
+import DBasketControllers from './services/DBasketControllers'
 
 export const BasketItem: FC<BasketItemsProps> = ({ id, img, name, info, price, count }) => {
   const dispatch = useDispatch()
 
-  const minusProduct = (id: string): void => {
-    if (count === 1) {
-      if (window.confirm('Вы дейтсвительно хотите удалить товар?')) {
-        dispatch(removeItem(id))
-      }
-    } else {
-      dispatch(minusItem(id))
-    }
-  }
-  const plusProduct = (id: string): void => {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    dispatch(addItem({ id } as ISets))
-  }
+  /// functions ///
+  const { minusProduct, plusProduct } = DBasketControllers({ count, dispatch })
+  /// functions ///
 
   return (
     <>

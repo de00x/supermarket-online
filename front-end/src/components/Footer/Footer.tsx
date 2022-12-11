@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import instagramm from './img/instagrammIcon.svg'
 import telegramm from './img/telegrammIcon.svg'
 import whatsapp from './img/whatsappIcon.svg'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const Footer: FC = () => {
   const [initialState, setInitialState] = useState(false)

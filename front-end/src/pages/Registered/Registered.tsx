@@ -1,10 +1,12 @@
 import { ReactComponent as Logo } from './img/logo.svg'
-import { FC, SyntheticEvent, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { IUserData } from './types'
-import axios from 'axios'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import { FC, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { IUserData } from './types/Registered.types'
+import styles from './styles/styles.module.scss'
+import RegStylesController from './styles/RegStylesController'
+import RegControllers from './services/RegControllers'
+import { InputLogin } from './inputs/InputLogin'
+import { InputPassword } from './inputs/InputLogin copy'
 
 export const Registered: FC = () => {
   const [incorrectInputData, setIncorrectInputData] = useState(false)
@@ -14,45 +16,15 @@ export const Registered: FC = () => {
     password: '',
   })
 
+  /// functions ///
+  const { submit } = RegControllers({ userData, setRegisterError, setIncorrectInputData })
+  /// functions ///
+
   /// styles ///
-  const stylesFormInput = cn(styles.formInput, {
-    [styles.inputErrData]: incorrectInputData,
+  const { stylesFormInput } = RegStylesController({
+    incorrectInputData,
   })
   /// styles ///
-
-  /// onClick ///
-  const submit = (e: SyntheticEvent<HTMLFormElement>): void => {
-    e.preventDefault()
-    if (userData.login.length > 4 && userData.password.length > 4) {
-      axios
-        .post('/registration', {
-          login: userData.login,
-          password: userData.password,
-        })
-        .then((res) => {
-          if (res.data.success === true) {
-            setTimeout(() => {
-              navigate('/main')
-            }, 100)
-          } else setRegisterError(true)
-          setTimeout(() => {
-            setRegisterError(false)
-          }, 10000)
-        })
-        .catch((err) => {
-          console.log('err', err)
-        })
-    } else funcIncorrectData()
-  }
-  const funcIncorrectData = (): void => {
-    setIncorrectInputData(true)
-    setTimeout(() => {
-      setIncorrectInputData(false)
-    }, 7000)
-  }
-  /// onClick ///
-
-  const navigate = useNavigate()
 
   return (
     <>
@@ -64,22 +36,16 @@ export const Registered: FC = () => {
           <div className={styles.header}>Регистрация</div>
           <div className={styles.form}>
             <form onSubmit={submit}>
-              <div className={stylesFormInput}>
-                <input
-                  placeholder="Логин"
-                  value={userData.login}
-                  onChange={(e) => setUserData({ ...userData, login: e.target.value })}
-                  type="login"
-                ></input>
-              </div>
-              <div className={stylesFormInput}>
-                <input
-                  placeholder="Пароль"
-                  value={userData.password}
-                  onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-                  type="password"
-                ></input>
-              </div>
+              <InputLogin
+                userData={userData}
+                setUserData={setUserData}
+                stylesFormInput={stylesFormInput}
+              />
+              <InputPassword
+                userData={userData}
+                setUserData={setUserData}
+                stylesFormInput={stylesFormInput}
+              />
               {registerError && (
                 <div className={styles.registerError}>Такой пользователь уже существует</div>
               )}

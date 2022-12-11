@@ -1,35 +1,25 @@
 import { selectCart } from '../../../../../redux/slices/selectors'
-import { clearItems } from '../../../../../redux/slices/slice'
 import { useAppSelector } from '../../../../../hooks/hooks'
-import { FC, useEffect, useRef, useState } from 'react'
+import { BasketItem } from './BasketItem/BasketMItem'
 import basketClearImg from './img/basketImg.webp'
-import { BasketItem } from './BasketItem'
-import styles from './styles.module.scss'
-import { useDispatch } from 'react-redux'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import styles from './styles/styles.module.scss'
+import BasketMService from './services/BasketM.service'
+import BasketMControllers from './services/BasketMControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [accessClearAllItem, setAccessClearAllItem] = useState(false)
   const { items, totalPrice } = useAppSelector(selectCart)
-  const dispatch = useDispatch()
   const isMounted = useRef(false)
-  const clearAllProducts = (): void => {
-    dispatch(clearItems())
-  }
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// controllers ///
+  const { totalCount, clearAllProducts } = BasketMControllers({ items })
+  /// controllers ///
+
+  /// useEffects ///
+  BasketMService.GetItemLS(isMounted, items)
+  /// useEffects ///
 
   return (
     <>

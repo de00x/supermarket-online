@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { ReviewsMobile } from '../PagesForMobile/ReviewsMobile'
+import { RightBlock } from '../../components/RightBlock'
 import { Sidebar } from '../../components/Sidebar'
 import { Middle } from './middleBlock'
-import { RightBlock } from '../../components/RightBlock'
-import styles from './styles.module.scss'
-import { ReviewsMobile } from '../PagesForMobile/ReviewsMobile'
+import { FC } from 'react'
+import styles from './styles/styles.module.scss'
 
 export const Reviews: FC = () => {
   return (

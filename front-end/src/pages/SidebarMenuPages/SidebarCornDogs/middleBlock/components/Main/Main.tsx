@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/hooks'
-import { selectCart } from '../../../../../../redux/slices/selectors'
 import { ReactComponent as CornDogs } from '../../../img/cornDogs.svg'
-import { addItem } from '../../../../../../redux/slices/slice'
-import { FC, useEffect, useRef, useState } from 'react'
+import { selectCart } from '../../../../../../redux/slices/selectors'
+import { useAppSelector } from '../../../../../../hooks/hooks'
 import { SkeletonCornDogLoading } from './components'
+import { ICornDog } from './types/SCornDogs.types'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ICornDog } from './types'
-import axios from 'axios'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SCornDogsService from './services/SCornDogs.service'
+import SCornDogsControllers from './services/SCornDogsControllers'
+import SCDogsStylesControllers from './styles/SCDogsStylesControllers'
 
 export const Main: FC = () => {
   const [allCornDogs, setAllCornDogs] = useState<ICornDog[]>([])
@@ -17,83 +17,27 @@ export const Main: FC = () => {
   const [sortFly, setSortFly] = useState(false)
   const [errAuth, setErrAuth] = useState(false)
   const { items } = useAppSelector(selectCart)
-  const dispatch = useAppDispatch()
   const isMounted = useRef(false)
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// functions ///
+  const { addProductToBasket, getDefault, getLess, getMore } = SCornDogsControllers({
+    setSortBy,
+    setErrAuth,
+    setSortFly,
+    allCornDogs,
+    setAllCornDogs,
+  })
+  /// functions ///
 
-  useEffect(() => {
-    localStorage.setItem('location', 'cornDogs')
-    window.scrollTo(0, 0)
-    axios
-      .get('/cornDogs')
-      .then((res) => setAllCornDogs(res.data))
-      .then(() => setIsLoading(false))
-      .catch((err) => console.log('errCornDogs', err))
-  }, [])
-
-  /// onClick ///
-  const addProductToBasket = (cornDog: ICornDog): void => {
-    const item: ICornDog = {
-      id: cornDog.id,
-      img: cornDog.img,
-      name: cornDog.name,
-      info: cornDog.info,
-      price: cornDog.price,
-      count: cornDog.count,
-    }
-    if (localStorage.getItem('login') === null) {
-      window.scrollTo(0, 0)
-      setErrAuth(true)
-      setTimeout(() => {
-        setErrAuth(false)
-      }, 7000)
-    } else dispatch(addItem(item))
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/cornDogs')
-      .then((res) => setAllCornDogs(res.data))
-      .catch((err) => console.log('errCornDogs', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allCornDogs.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return a.price - b.price
-    })
-    return setAllCornDogs(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allCornDogs.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return b.price - a.price
-    })
-    return setAllCornDogs(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SCornDogsService.SetProductLS(isMounted, items)
+  SCornDogsService.GetAllCornDogs(setAllCornDogs, setIsLoading)
+  /// useEffects ///
 
   /// styles ///
-  const stylesSort = cn(styles.sort, { [styles.sortTrue]: sortFly })
-  const stylesErrAuth = cn(styles.errAuth, { [styles.errAuthActive]: errAuth })
-  const stylesErrAuthContainerBgdRed = cn(styles.errAuthContainer, {
-    [styles.errAuthContainerBgdRed]: errAuth,
+  const { stylesSort, stylesErrAuth, stylesErrAuthContainerBgdRed } = SCDogsStylesControllers({
+    sortFly,
+    errAuth,
   })
   /// styles ///
 

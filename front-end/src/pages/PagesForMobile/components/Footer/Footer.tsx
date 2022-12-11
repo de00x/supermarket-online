@@ -5,15 +5,17 @@ import { footerBasket, footerMenu, footerReviews } from './img/img'
 import { ReactComponent as Peronal } from './img/personalIcon.svg'
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './styles.module.scss'
 import cn from 'classnames'
+import styles from './styles/styles.module.scss'
 
 export const Footer: FC = (): JSX.Element => {
   const [moreDetailsOpen, setMoreDetailsOpen] = useState(false)
 
+  /// styles ///
   const styleMoreDetails = cn(styles.moreDetails, {
     [styles.moreDetailsActive]: moreDetailsOpen,
   })
+  /// styles ///
 
   return (
     <div className={styles.footerContainer}>

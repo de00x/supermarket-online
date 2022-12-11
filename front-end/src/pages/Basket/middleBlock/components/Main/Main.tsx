@@ -7,8 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FC, useEffect, useRef } from 'react'
 import { BasketItem } from './BasketItem'
 import { useDispatch } from 'react-redux'
-import styles from './styles.module.scss'
 import basketImg from './img/basketImg.webp'
+import styles from './styles/styles.module.scss'
 
 export const Main: FC = () => {
   const dispatch = useDispatch()

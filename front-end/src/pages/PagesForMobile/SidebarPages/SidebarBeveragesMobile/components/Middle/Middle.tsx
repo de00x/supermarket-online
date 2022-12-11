@@ -1,17 +1,15 @@
-import { selectCart } from '../../../../../../redux/slices/selectors'
 import { ReactComponent as Beverages } from './img/beverages.svg'
-import { useAppSelector } from '../../../../../../hooks/hooks'
-import { addItem } from '../../../../../../redux/slices/slice'
 import { SkeletonSetsMobile } from '../../../../../Skeletons'
 import { ReactComponent as SortBy } from './img/sortBy.svg'
 import { ReactComponent as Cart } from './img/cart.svg'
-import { FC, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { IBeverages } from './types/SBeveragesM.types'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IBeverages } from './types'
-import axios from 'axios'
 import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SBevMService from './services/SBevM.service'
+import SBevMControllers from './services/SBevMControllers'
+import SBevMSControllers from './styles/SBevMSControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [allBeverages, setAllBeverages] = useState<IBeverages[]>([])
@@ -20,88 +18,25 @@ export const Middle: FC = (): JSX.Element => {
   const [sortBy, setSortBy] = useState('Сортировка')
   const [sortFly, setSortFly] = useState(false)
   const isMounted = useRef(false)
-  const dispatch = useDispatch()
-  const { items, totalPrice } = useAppSelector(selectCart)
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
 
-  useEffect(() => {
-    axios
-      .get('/beverages')
-      .then((res) => setAllBeverages(res.data))
-      .then(() => setIsLoadingPage(false))
-      .catch((err) => console.log('errBeverages', err))
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
-
-  /// onClick ///
-  const addProductToBasket = (cartProduct: IBeverages): void => {
-    const item: IBeverages = {
-      id: cartProduct.id,
-      img: cartProduct.img,
-      name: cartProduct.name,
-      info: cartProduct.info,
-      price: cartProduct.price,
-      count: cartProduct.count,
-    }
-    if (localStorage.getItem('login') !== null) {
-      dispatch(addItem(item))
-    } else {
-      window.scrollTo(0, 0)
-      setErrNotAuth(true)
-      setTimeout(() => {
-        setErrNotAuth(false)
-      }, 7000)
-    }
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/beverages')
-      .then((res) => setAllBeverages(res.data))
-      .catch((err) => console.log('errBeverages', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allBeverages.sort(function (a, b) {
-      return a.price - b.price
+  /// controllers ///
+  const { addProductToBasket, getDefault, getLess, getMore, totalPrice, totalCount, items } =
+    SBevMControllers({
+      setSortBy,
+      setSortFly,
+      allBeverages,
+      setErrNotAuth,
+      setAllBeverages,
     })
-    return setAllBeverages(result)
-  }
+  /// controllers ///
 
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allBeverages.sort(function (a, b) {
-      return b.price - a.price
-    })
-    return setAllBeverages(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SBevMService.GetBeverages(setAllBeverages, setIsLoadingPage, isMounted, items)
+  /// useEffects ///
 
   // styles ///
-  const classSortFlyOpenTextDefault = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'По умолчанию',
-  })
-  const classSortFlyOpenTextHigh = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дороже',
-  })
-  const classSortFlyOpenTextLow = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дешевле',
-  })
+  const { classSortFlyOpenTextDefault, classSortFlyOpenTextHigh, classSortFlyOpenTextLow } =
+    SBevMSControllers({ sortBy })
   // styles ///
 
   return (

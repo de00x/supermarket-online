@@ -1,4 +1,4 @@
-import { ISets } from '../pages/SidebarMenuPages/SidebarSets/middleBlock/components/Main/types'
+import { ISets } from '../pages/SidebarMenuPages/SidebarSets/middleBlock/components/Main/types/SSets.types'
 import { calcTotalPrice } from './calcTotalPrice'
 
 export const getCartFromLS = (): any => {

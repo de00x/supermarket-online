@@ -1,61 +1,33 @@
 import { ReactComponent as SearchInput } from '../img/searchInput.svg'
-import { IProductBySearch, IInputProps, PopupClick } from './types'
 import { ReactComponent as CloseInput } from '../img/close.svg'
-import { useEffect, FC, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import styles from './styles.module.scss'
-import cn from 'classnames'
-import axios from 'axios'
+import { IProductBySearch, IInputProps } from './types/types'
+import { FC, useState } from 'react'
+import styles from './styles/styles.module.scss'
+import ISearchService from './services/ISearch.service'
+import ISearchControllers from './services/ISearchControllers'
+import ISStylesControllers from './styles/ISStylesControllers'
+import { InputSearchValue } from './inputs/InputSearchValue'
 
 export const InputSearch: FC<IInputProps> = ({ setSearchOpen }) => {
   const [searchProduct, setSearchProduct] = useState<IProductBySearch[]>([])
-  const refCloseFlySearch = useRef<HTMLDivElement>(null)
   const [searchValue, setSearchValue] = useState('')
   const [flySearch, setFlySearch] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    axios
-      .get('/search-product')
-      .then((res) => setSearchProduct(res.data))
-      .catch((err) => console.log('err', err))
-  }, [])
-  //
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent): void => {
-      const _event = event as PopupClick
-      if (refCloseFlySearch.current != null && !_event.path.includes(refCloseFlySearch.current)) {
-        if (inputRef.current != null && !_event.path.includes(inputRef.current)) {
-          setFlySearch(false)
-        }
-      }
-    }
-    document.body.addEventListener('click', handleClickOutside)
-    return () => document.body.removeEventListener('click', handleClickOutside)
-  }, [])
-  //
+  /// functions ///
+  const { onClickFlySearch, onClickClear, inputRef, refCloseFlySearch } = ISearchControllers({
+    searchValue,
+    setSearchOpen,
+    setSearchValue,
+  })
+  /// functions ///
 
-  /// onCLick ///
-  const onClickFlySearch = (obj: IProductBySearch): void => {
-    setTimeout(() => {
-      navigate(obj.url)
-    }, 100)
-  }
-
-  const onClickClear = (): void => {
-    if (searchValue === '') {
-      setSearchOpen(true)
-    }
-    setSearchValue('')
-    inputRef.current?.focus()
-  }
-  /// onCLick ///
+  ///  useEffects ///
+  ISearchService.GetSearchProduct(setSearchProduct)
+  ISearchService.GetClickOutsideInput(refCloseFlySearch, inputRef, setFlySearch)
+  ///  useEffects ///
 
   /// styles ///
-  const stylesInputForm = cn(styles.inputForm, {
-    [styles.inputFormActive]: flySearch,
-  })
+  const { stylesInputForm } = ISStylesControllers(flySearch)
   /// styles ///
 
   return (
@@ -63,14 +35,13 @@ export const InputSearch: FC<IInputProps> = ({ setSearchOpen }) => {
       <form className={styles.containerForm}>
         <SearchInput className={styles.searchInput} />
         <CloseInput onClick={onClickClear} className={styles.closeInput} />
-        <input
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          onClick={() => setFlySearch(true)}
-          className={stylesInputForm}
-          placeholder="Глобальный поиск"
-          ref={inputRef}
-        ></input>
+        <InputSearchValue
+          inputRef={inputRef}
+          searchValue={searchValue}
+          setFlySearch={setFlySearch}
+          setSearchValue={setSearchValue}
+          stylesInputForm={stylesInputForm}
+        />
         {flySearch && (
           <div ref={refCloseFlySearch} className={styles.activeFlySearchContainer}>
             <div className={styles.activeFlySearch}>

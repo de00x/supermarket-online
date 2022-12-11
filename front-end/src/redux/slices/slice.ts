@@ -5,7 +5,7 @@ import { getCartFromLS } from '../../utils/getCartFromLs'
 import {
   CartSliceState,
   ISets,
-} from '../../pages/SidebarMenuPages/SidebarSets/middleBlock/components/Main/types'
+} from '../../pages/SidebarMenuPages/SidebarSets/middleBlock/components/Main/types/SSets.types'
 
 const initialState: CartSliceState = getCartFromLS()
 

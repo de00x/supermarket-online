@@ -1,12 +1,11 @@
-import { selectCart } from '../../../../../redux/slices/selectors'
 import { ReactComponent as BtnMinus } from './img/buttonMinus.svg'
 import { ReactComponent as BtnPlus } from './img/buttonPlus.svg'
-import { useAppSelector } from '../../../../../hooks/hooks'
 import { ReactComponent as Card } from './img/inCash.svg'
 import { ReactComponent as Cash } from './img/card.svg'
 import { FC, useEffect, useState } from 'react'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import DeliveryMControllers from './services/DeliveryMControllers'
+import DeliveryMStylesControllers from './styles/DeliveryMStylesControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [whatDelivery, setWhatDelivery] = useState('')
@@ -14,73 +13,51 @@ export const Middle: FC = (): JSX.Element => {
   const [deliveryOn, setDeliveryOn] = useState('')
   const [isCashback, setIsCashback] = useState(false)
   const [devicesCounter, setDevicesCounter] = useState(0)
-  const { items, totalPrice } = useAppSelector(selectCart)
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   /// styles ///
-  const stylesDeliveryByCourier = cn(styles.deliveryByCourier, {
-    [styles.deliveryByActive]: whatDelivery === 'Курьером',
-  })
-  const stylesDeliveryByPickup = cn(styles.deliveryByPickup, {
-    [styles.deliveryByActive]: whatDelivery === 'Самовывоз',
-  })
-  const stylesPaymentByInCash = cn(styles.paymentByInCash, {
-    [styles.deliveryByActive]: whatPayment === 'Наличными',
-  })
-  const stylesPaymentByCard = cn(styles.paymentByCard, {
-    [styles.deliveryByActive]: whatPayment === 'Картой',
-  })
-  const deliveryForNow = cn(styles.deliveryForNow, {
-    [styles.deliveryOnActive]: deliveryOn === 'Сейчас',
-  })
-  const deliveryForTime = cn(styles.deliveryForTime, {
-    [styles.deliveryOnActive]: deliveryOn === 'Время',
-  })
-  const stylesToggleCashback = cn(styles.toggleCashback, {
-    [styles.toggleCashbackActive]: isCashback,
+  const {
+    deliveryForNow,
+    deliveryForTime,
+    stylesPaymentByCard,
+    stylesToggleCashback,
+    stylesPaymentByInCash,
+    stylesDeliveryByPickup,
+    stylesDeliveryByCourier,
+  } = DeliveryMStylesControllers({
+    isCashback,
+    deliveryOn,
+    whatPayment,
+    whatDelivery,
   })
   /// styles ///
 
-  /// onClick ///
-  const onClickCourier = (): void => {
-    setWhatDelivery('Курьером')
-  }
-  const onClickForTime = (): void => {
-    setDeliveryOn('Время')
-  }
-  const onClickPickup = (): void => {
-    setWhatDelivery('Самовывоз')
-  }
-  const onClickInCash = (): void => {
-    setWhatPayment('Наличными')
-  }
-  const onClickInCard = (): void => {
-    setWhatPayment('Картой')
-  }
-  const onClickForNow = (): void => {
-    setDeliveryOn('Сейчас')
-  }
-  const onClickCashback = (): void => {
-    setIsCashback(!isCashback)
-  }
-  const onClickDevicesMinus = (): number | null => {
-    if (devicesCounter !== 0) {
-      setDevicesCounter(devicesCounter - 1)
-    }
-    return null
-  }
-  const onClickDevicesPlus = (): void => {
-    setDevicesCounter(devicesCounter + 1)
-  }
-  /// onClick ///
+  /// controllers ///
+  const {
+    totalPrice,
+    totalCount,
+    onClickPickup,
+    onClickInCash,
+    onClickInCard,
+    onClickForNow,
+    onClickCourier,
+    onClickForTime,
+    onClickCashback,
+    onClickDevicesPlus,
+    onClickDevicesMinus,
+  } = DeliveryMControllers({
+    isCashback,
+    setDeliveryOn,
+    setIsCashback,
+    setWhatPayment,
+    devicesCounter,
+    setWhatDelivery,
+    setDevicesCounter,
+  })
+  /// controllers ///
 
   return (
     <div className={styles.middleContainer}>

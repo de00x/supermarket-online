@@ -1,8 +1,8 @@
 import { slider1, slider2, slider3, slider4, slider5 } from '../img/img'
 import { Login } from '../../../../Login'
 import { FC, useState } from 'react'
-import './index.scss'
-import styles from './styles.module.scss'
+import './styles/index.scss'
+import styles from './styles/styles.module.scss'
 import Carousel from 'react-bootstrap/Carousel'
 
 export const SliderMenu: FC = () => {

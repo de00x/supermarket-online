@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/hooks'
 import { selectCart } from '../../../../../../redux/slices/selectors'
+import { useAppSelector } from '../../../../../../hooks/hooks'
 import { ReactComponent as WOK } from '../../../img/WOK.svg'
-import { addItem } from '../../../../../../redux/slices/slice'
-import { FC, useEffect, useRef, useState } from 'react'
 import { SkeletonWokLoading } from './components'
+import { FC, useRef, useState } from 'react'
+import { IWok } from './types/SWok.types'
 import { Link } from 'react-router-dom'
-import { IWok } from './types'
-import axios from 'axios'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SWokService from './services/SWok.service'
+import SWokControllers from './services/SWokControllers'
+import SWokStylesControllers from './styles/SWokStylesControllers'
 
 export const Main: FC = () => {
   const [sortBy, setSortBy] = useState('По умолчанию')
@@ -17,83 +17,26 @@ export const Main: FC = () => {
   const [sortFly, setSortFly] = useState(false)
   const [errAuth, setErrAuth] = useState(false)
   const { items } = useAppSelector(selectCart)
-  const dispatch = useAppDispatch()
   const isMounted = useRef(false)
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// functions ///
+  const { addProductToBasket, getDefault, getLess, getMore } = SWokControllers({
+    allWoks,
+    setSortBy,
+    setAllWok,
+    setErrAuth,
+    setSortFly,
+  })
+  /// functions ///
 
-  useEffect(() => {
-    localStorage.setItem('location', 'wok')
-    window.scrollTo(0, 0)
-    axios
-      .get('/wok')
-      .then((res) => setAllWok(res.data))
-      .then(() => setIsLoading(false))
-      .catch((err) => console.log('errWok', err))
-  }, [])
-
-  /// onClick ///
-  const addProductToBasket = (wok: IWok): void => {
-    const item: IWok = {
-      id: wok.id,
-      img: wok.img,
-      name: wok.name,
-      info: wok.info,
-      price: wok.price,
-      count: wok.count,
-    }
-    if (localStorage.getItem('login') === null) {
-      window.scrollTo(0, 0)
-      setErrAuth(true)
-      setTimeout(() => {
-        setErrAuth(false)
-      }, 7000)
-    } else dispatch(addItem(item))
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/wok')
-      .then((res) => setAllWok(res.data))
-      .catch((err) => console.log('errWok', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allWoks.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return a.price - b.price
-    })
-    return setAllWok(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allWoks.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return b.price - a.price
-    })
-    return setAllWok(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SWokService.GetAllWok(isMounted, items, setAllWok, setIsLoading)
+  /// useEffects ///
 
   /// styles ///
-  const stylesSort = cn(styles.sort, { [styles.sortTrue]: sortFly })
-  const stylesErrAuth = cn(styles.errAuth, { [styles.errAuthActive]: errAuth })
-  const stylesErrAuthContainerBgdRed = cn(styles.errAuthContainer, {
-    [styles.errAuthContainerBgdRed]: errAuth,
+  const { stylesSort, stylesErrAuth, stylesErrAuthContainerBgdRed } = SWokStylesControllers({
+    sortFly,
+    errAuth,
   })
   /// styles ///
 

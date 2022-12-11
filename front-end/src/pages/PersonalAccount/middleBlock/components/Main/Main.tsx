@@ -8,7 +8,7 @@ import {
   Logout,
   LockPage,
 } from './components'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const Main: FC = () => {
   useEffect(() => {

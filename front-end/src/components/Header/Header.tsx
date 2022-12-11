@@ -10,23 +10,23 @@ import { ReactComponent as Cart } from './img/cart.svg'
 import { useAppSelector } from '../../hooks/hooks'
 import { Link } from 'react-router-dom'
 import { FC, useState } from 'react'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import HeaderControllers from './services/HeaderControllers'
 
 export const Header: FC = () => {
   const [personalAccountExit, setPersonalAccountExit] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(true)
   const { items, totalPrice } = useAppSelector(selectCart)
+  const [searchOpen, setSearchOpen] = useState(true)
   const totalCount = items.reduce(
     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
     (sum: number, item: any) => sum + item.count,
     0
   )
-  const successExitOnAccount = (): void => {
-    localStorage.removeItem('login')
-    localStorage.removeItem('cart')
-    localStorage.removeItem('id')
-    window.location.reload()
-  }
+
+  /// functions ///
+  const { successExitOnAccount } = HeaderControllers()
+  /// functions ///
+
   return (
     <>
       <div className={styles.headerContainer}>

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import ContentLoader from 'react-content-loader'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const SkeletonReviews: FC = () => {
   return (

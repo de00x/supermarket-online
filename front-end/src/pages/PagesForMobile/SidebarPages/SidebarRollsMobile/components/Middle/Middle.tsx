@@ -1,17 +1,15 @@
-import { selectCart } from '../../../../../../redux/slices/selectors'
-import { useAppSelector } from '../../../../../../hooks/hooks'
-import { addItem } from '../../../../../../redux/slices/slice'
 import { SkeletonSetsMobile } from '../../../../../Skeletons'
 import { ReactComponent as SortBy } from './img/sortBy.svg'
 import { ReactComponent as Rolls } from './img/rolls.svg'
 import { ReactComponent as Cart } from './img/cart.svg'
-import { FC, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { ISets } from './types/SRollsM.types'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ISets } from './types'
-import axios from 'axios'
 import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SRollsService from './services/SRolls.service'
+import SRollsMControllers from './services/SRollsMControllers'
+import SRMStyleControllers from './styles/SRMStyleControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [isLoadingPage, setIsLoadingPage] = useState(true)
@@ -20,88 +18,19 @@ export const Middle: FC = (): JSX.Element => {
   const [allRolls, setAllRolls] = useState<ISets[]>([])
   const [sortBy, setSortBy] = useState('Сортировка')
   const isMounted = useRef(false)
-  const dispatch = useDispatch()
-  const { items, totalPrice } = useAppSelector(selectCart)
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
 
-  useEffect(() => {
-    axios
-      .get('/rolls')
-      .then((res) => setAllRolls(res.data))
-      .then(() => setIsLoadingPage(false))
-      .catch((err) => console.log('errRolls', err))
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// controllers ///
+  const { addProductToBasket, getDefault, getLess, getMore, items, totalPrice, totalCount } =
+    SRollsMControllers({ allRolls, setSortBy, setSortFly, setAllRolls, setErrNotAuth })
+  /// controllers ///
 
-  /// onClick ///
-  const addProductToBasket = (cartProduct: ISets): void => {
-    const item: ISets = {
-      id: cartProduct.id,
-      img: cartProduct.img,
-      name: cartProduct.name,
-      info: cartProduct.info,
-      price: cartProduct.price,
-      count: cartProduct.count,
-    }
-    if (localStorage.getItem('login') !== null) {
-      dispatch(addItem(item))
-    } else {
-      window.scrollTo(0, 0)
-      setErrNotAuth(true)
-      setTimeout(() => {
-        setErrNotAuth(false)
-      }, 7000)
-    }
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/rolls')
-      .then((res) => setAllRolls(res.data))
-      .catch((err) => console.log('errRolls', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allRolls.sort(function (a, b) {
-      return a.price - b.price
-    })
-    return setAllRolls(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allRolls.sort(function (a, b) {
-      return b.price - a.price
-    })
-    return setAllRolls(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SRollsService.GetRolls(setAllRolls, setIsLoadingPage, isMounted, items)
+  /// useEffects ///
 
   // styles ///
-  const classSortFlyOpenTextDefault = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'По умолчанию',
-  })
-  const classSortFlyOpenTextHigh = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дороже',
-  })
-  const classSortFlyOpenTextLow = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дешевле',
-  })
+  const { classSortFlyOpenTextDefault, classSortFlyOpenTextHigh, classSortFlyOpenTextLow } =
+    SRMStyleControllers({ sortBy })
   // styles ///
 
   return (

@@ -1,7 +1,7 @@
-import { FC } from 'react'
-import { Link } from 'react-router-dom'
 import { middleMenu1, middleMenu2, middleMenu3, middleMenu4, middleMenu5 } from '../img/img'
-import styles from './styles.module.scss'
+import { Link } from 'react-router-dom'
+import { FC } from 'react'
+import styles from './styles/styles.module.scss'
 
 export const MiddleMenu: FC = () => {
   return (

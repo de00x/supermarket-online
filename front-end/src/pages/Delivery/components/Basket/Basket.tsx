@@ -1,17 +1,10 @@
-import { selectCart } from '../../../../redux/slices/selectors'
-import { useAppSelector } from '../../../../hooks/hooks'
 import { BasketItem } from './BasketItem'
 import { FC } from 'react'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import BasketControllers from './services/BasketControllers'
 
 export const Basket: FC = (): JSX.Element => {
-  const { items, totalPrice } = useAppSelector(selectCart)
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
-
+  const { totalCount, items, totalPrice } = BasketControllers()
   return (
     <>
       <div className={styles.basketContainer}>

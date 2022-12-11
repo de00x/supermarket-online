@@ -1,14 +1,15 @@
 import { ReactComponent as Search } from './img/search.svg'
-import { AuthorizationWindow } from './AuthorizationWindow'
 import { ReactComponent as Clock } from './img/clock.svg'
 import { ReactComponent as Close } from './img/close.svg'
-import { FC, useEffect, useRef, useState } from 'react'
-import { IProductBySearch, PopupClick } from './types'
-import { Link, useNavigate } from 'react-router-dom'
+import { IProductBySearch } from './types/HeaderM.types'
+import { FC, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { logoImg } from './img/img'
 import cn from 'classnames'
-import axios from 'axios'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import HeaderMService from './services/HeaderM.service'
+import { AuthorizationWindow } from './AuthorizationWindow'
+import HeaderMControllers from './services/HeaderMControllers'
 
 export const Header: FC = (): JSX.Element => {
   const [searchProduct, setSearchProduct] = useState<IProductBySearch[]>([])
@@ -18,43 +19,22 @@ export const Header: FC = (): JSX.Element => {
   const [valueSearch, setValueSearch] = useState('')
   const refCloseFlySearch = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    axios
-      .get('/search-product')
-      .then((res) => setSearchProduct(res.data))
-      .catch((err) => console.log('err', err))
-    const handleClickOutside = (event: MouseEvent): void => {
-      const _event = event as PopupClick
-      if (refCloseFlySearch.current != null && !_event.path.includes(refCloseFlySearch.current)) {
-        if (inputRef.current != null && !_event.path.includes(inputRef.current)) {
-          setOpenFlySearch(false)
-        }
-      }
-    }
-    document.body.addEventListener('click', handleClickOutside)
-    return () => document.body.removeEventListener('click', handleClickOutside)
-  }, [])
+  /// controllers ///
+  const { openHeaderAuthorization, onClickFlySearch, onClickInput } = HeaderMControllers({
+    inputRef,
+    valueSearch,
+    setOpenSearch,
+    setValueSearch,
+    setOpenFlySearch,
+    headerAuthorization,
+    setHeaderAuthorization,
+  })
+  /// controllers ///
 
-  /// onClick ///
-  const openHeaderAuthorization = (): void => {
-    setHeaderAuthorization(!headerAuthorization)
-  }
-  const onClickFlySearch = (obj: IProductBySearch): void => {
-    setTimeout(() => {
-      navigate(obj.url)
-    }, 100)
-  }
-  const onClickInput = (): void => {
-    if (valueSearch.length === 0) {
-      setOpenSearch(false)
-      setOpenFlySearch(false)
-    }
-    setValueSearch('')
-    inputRef.current?.focus()
-  }
-  /// onClick ///
+  /// useEffects ///
+  HeaderMService.GetSearchProduct(setSearchProduct, refCloseFlySearch, inputRef, setOpenFlySearch)
+  /// useEffects ///
 
   /// styles ///
   const stylesHeaderContainer = cn(styles.headerContainer, {

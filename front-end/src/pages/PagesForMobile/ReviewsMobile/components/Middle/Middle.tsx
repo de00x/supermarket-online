@@ -1,10 +1,12 @@
+import { IResponse, IReviewData } from './types/ReviewsM.types'
 import { SkeletonReviewsMobile } from '../../../../Skeletons'
 import { ReactComponent as Star } from './img/star.svg'
-import { IResponse, IReviewData } from './types'
-import { FC, useEffect, useState } from 'react'
-import axios, { AxiosResponse } from 'axios'
+import { FC, useState } from 'react'
 import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import ReviewsMService from './services/ReviewsM.service'
+import RMStylesControllers from './styles/RMStylesControllers'
+import ReviewsMControllers from './services/ReviewsMControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [responseReviews, setResponseReviews] = useState<IResponse[]>([])
@@ -24,166 +26,52 @@ export const Middle: FC = (): JSX.Element => {
     stars: 0,
   })
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    axios
-      .get('/reviews')
-      .then((res) => {
-        onResponseAllReviews(res)
-      })
-      .catch((err) => console.log('errReviewsMobile', err))
-  }, [formAddReview])
+  /// controllers ///
+  const {
+    mouseOut,
+    closedForm,
+    mouseOverTwo,
+    mouseOverOne,
+    activeStarTwo,
+    activeStarOne,
+    mouseOverFive,
+    activeStarFive,
+    mouseOverThour,
+    mouseOverThree,
+    activeStarThour,
+    activeStarThree,
+    onFormAddReview,
+    onResponseAllReviews,
+    newReviewDataLengthError,
+    confirmationClosedFormCancel,
+    confirmationClosedFormDelete,
+  } = ReviewsMControllers({
+    formAddReview,
+    newReviewData,
+    responseReviews,
+    setIsLoadingPage,
+    setNewReviewData,
+    setFormAddReview,
+    setResponseReviews,
+    setCountActiveStar,
+    setAddReviewErrData,
+    setCheckedActiveStar,
+    setAddReviewErrRepeat,
+    setAddReviewErrDataText,
+    setConfirmationClosedForm,
+    setSuccessCreateNewReviewText,
+    setAddReviewErrNotAuthorization,
+  })
+  /// controllers ///
+
+  /// useEffects ///
+  ReviewsMService.GetReviews(onResponseAllReviews, formAddReview)
+  /// useEffects ///
 
   /// styles ///
-  const stylesFormAddReviewText = cn(styles.formAddReviewText, {
-    [styles.formAddReviewTextErr]: newReviewData.reviewText.length === 500,
-  })
-  const stylesFormAddReviewName = cn(styles.formAddReviewHeader, {
-    [styles.formAddReviewHeaderErr]: newReviewData.name.length === 15,
-  })
-  const stylesAddReview = cn(styles.addReview, {
-    [styles.addReviewActive]: addReviewErrRepeat,
-  })
-  const stylesCounterStars = cn(
-    styles.countStarsContainer,
-    {
-      [styles.countStarsActiveOne]: countActiveStar === 1 || checkedActiveStar === 1,
-    },
-    {
-      [styles.countStarsActiveTwo]: countActiveStar === 2 || checkedActiveStar === 2,
-    },
-    {
-      [styles.countStarsActiveThree]: countActiveStar === 3 || checkedActiveStar === 3,
-    },
-    {
-      [styles.countStarsActiveThour]: countActiveStar === 4 || checkedActiveStar === 4,
-    },
-    {
-      [styles.countStarsActiveFive]: countActiveStar === 5 || checkedActiveStar === 5,
-    }
-  )
+  const { stylesFormAddReviewText, stylesFormAddReviewName, stylesAddReview, stylesCounterStars } =
+    RMStylesControllers({ newReviewData, countActiveStar, checkedActiveStar, addReviewErrRepeat })
   /// styles ///
-
-  /// onClick ///
-  const onResponseAllReviews = (res: AxiosResponse): void => {
-    const allReviewsReverse = res.data.reverse()
-    setResponseReviews(allReviewsReverse)
-    setIsLoadingPage(false)
-  }
-  const confirmationClosedFormCancel = (): void => {
-    setConfirmationClosedForm(false)
-  }
-  const confirmationClosedFormDelete = (): void => {
-    setConfirmationClosedForm(false)
-    setFormAddReview(false)
-    setCheckedActiveStar(0)
-    setNewReviewData({ ...newReviewData, name: '', reviewText: '' })
-  }
-  const successCreateNewReview = (): void => {
-    setFormAddReview(false)
-    window.scrollTo(0, 0)
-    setSuccessCreateNewReviewText(true)
-    setTimeout(() => {
-      setSuccessCreateNewReviewText(false)
-    }, 7000)
-  }
-  const onFormAddReview = (): void => {
-    const idIsNoRepeat = responseReviews.find(
-      (userId: IResponse) => userId.id === localStorage.getItem('id')
-    )
-    if (localStorage.getItem('login') === null) {
-      setAddReviewErrNotAuthorization(true)
-      setTimeout(() => {
-        setAddReviewErrNotAuthorization(false)
-      }, 10000)
-    } else {
-      if (!formAddReview) {
-        if (idIsNoRepeat != null) {
-          setAddReviewErrRepeat(true)
-          setTimeout(() => {
-            setAddReviewErrRepeat(false)
-          }, 10000)
-        } else setFormAddReview(true)
-      } else {
-        if (checkErrReqNewReview) {
-          axios
-            .post('/review', {
-              id: localStorage.getItem('id'),
-              name: newReviewData.name,
-              reviews: newReviewData.reviewText,
-              stars: newReviewData.stars,
-            })
-            .then(successCreateNewReview)
-            .catch((err) => console.log(err))
-        } else {
-          if (newReviewData.name.length < 2) {
-            setAddReviewErrDataText('Введите корректное имя')
-          }
-          if (newReviewData.reviewText.length < 9) {
-            setAddReviewErrDataText('Введите корректный отзыв')
-          }
-          if (newReviewData.stars < 1) {
-            setAddReviewErrDataText('Минимальное количество звезд - 1')
-          }
-          setAddReviewErrData(true)
-          setTimeout(() => {
-            setAddReviewErrData(false)
-          }, 7000)
-        }
-      }
-    }
-  }
-  const activeStarThree = (): void => {
-    setCheckedActiveStar(3)
-    setNewReviewData({ ...newReviewData, stars: 3 })
-  }
-  const activeStarThour = (): void => {
-    setCheckedActiveStar(4)
-    setNewReviewData({ ...newReviewData, stars: 4 })
-  }
-  const mouseOverThree = (): void => {
-    setCountActiveStar(3)
-  }
-  const mouseOverThour = (): void => {
-    setCountActiveStar(4)
-  }
-  const activeStarFive = (): void => {
-    setCheckedActiveStar(5)
-    setNewReviewData({ ...newReviewData, stars: 5 })
-  }
-  const mouseOverFive = (): void => {
-    setCountActiveStar(5)
-  }
-  const activeStarOne = (): void => {
-    setCheckedActiveStar(1)
-    setNewReviewData({ ...newReviewData, stars: 1 })
-  }
-  const activeStarTwo = (): void => {
-    setCheckedActiveStar(2)
-    setNewReviewData({ ...newReviewData, stars: 2 })
-  }
-  const mouseOverOne = (): void => {
-    setCountActiveStar(1)
-  }
-  const mouseOverTwo = (): void => {
-    setCountActiveStar(2)
-  }
-  const closedForm = (): void => {
-    if (newReviewData.name.length === 0 && newReviewData.reviewText.length === 0) {
-      setFormAddReview(false)
-    } else setConfirmationClosedForm(true)
-  }
-  const mouseOut = (): void => {
-    setCountActiveStar(0)
-  }
-  /// onClick ///
-
-  /// longLogic ///
-  const newReviewDataLengthError =
-    newReviewData.reviewText.length === 500 || newReviewData.name.length === 15
-  const checkErrReqNewReview =
-    newReviewData.name.length > 1 && newReviewData.reviewText.length > 9 && newReviewData.stars > 0
-  /// longLogic ///
 
   return (
     <div className={styles.middleContainer}>

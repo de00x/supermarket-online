@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/hooks'
 import { ReactComponent as Beverages } from '../../../img/beverages.svg'
 import { selectCart } from '../../../../../../redux/slices/selectors'
-import { addItem } from '../../../../../../redux/slices/slice'
-import { FC, useEffect, useRef, useState } from 'react'
+import { useAppSelector } from '../../../../../../hooks/hooks'
 import { SkeletonBeveragesLoading } from './components'
+import { IBeverage } from './types/SBeverages.types'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IBeverage } from './types'
-import axios from 'axios'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SBeveragesService from './services/SBeverages.service'
+import SBevStylesControllers from './styles/SBevStylesControllers'
+import SBeveragesControllers from './services/SBeveragesControllers'
 
 export const Main: FC = () => {
   const [allBeverages, setAllBeverages] = useState<IBeverage[]>([])
@@ -17,80 +17,26 @@ export const Main: FC = () => {
   const [sortFly, setSortFly] = useState(false)
   const [errAuth, setErrAuth] = useState(false)
   const { items } = useAppSelector(selectCart)
-  const dispatch = useAppDispatch()
   const isMounted = useRef(false)
 
-  useEffect(() => {
-    localStorage.setItem('location', 'beverages')
-    window.scrollTo(0, 0)
-    axios
-      .get('/beverages')
-      .then((res) => setAllBeverages(res.data))
-      .then(() => setIsLoading(false))
-      .catch((err) => console.log('errBeverages', err))
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// functions ///
+  const { addProductToBasket, getDefault, getLess, getMore } = SBeveragesControllers({
+    setSortBy,
+    setErrAuth,
+    setSortFly,
+    allBeverages,
+    setAllBeverages,
+  })
+  /// functions ///
 
-  /// onClick ///
-  const addProductToBasket = (rolls: IBeverage): void => {
-    const item: IBeverage = {
-      id: rolls.id,
-      img: rolls.img,
-      name: rolls.name,
-      info: rolls.info,
-      price: rolls.price,
-      count: rolls.count,
-    }
-    if (localStorage.getItem('login') === null) {
-      window.scrollTo(0, 0)
-      setErrAuth(true)
-      setTimeout(() => {
-        setErrAuth(false)
-      }, 7000)
-    } else dispatch(addItem(item))
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/beverages')
-      .then((res) => setAllBeverages(res.data))
-      .catch((err) => console.log('errBeverages', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allBeverages.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return a.price - b.price
-    })
-    return setAllBeverages(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allBeverages.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return b.price - a.price
-    })
-    return setAllBeverages(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SBeveragesService.GetAllBeverages(setAllBeverages, setIsLoading, isMounted, items)
+  /// useEffects ///
 
   /// styles ///
-  const stylesErrAuth = cn(styles.errAuth, { [styles.errAuthActive]: errAuth })
-  const stylesSort = cn(styles.sort, { [styles.sortTrue]: sortFly })
-  const stylesErrAuthContainerBgdRed = cn(styles.errAuthContainer, {
-    [styles.errAuthContainerBgdRed]: errAuth,
+  const { stylesErrAuth, stylesSort, stylesErrAuthContainerBgdRed } = SBevStylesControllers({
+    errAuth,
+    sortFly,
   })
   /// styles ///
 

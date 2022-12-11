@@ -1,45 +1,18 @@
-import { ISets } from '../../../../SidebarMenuPages/SidebarSets/middleBlock/components/Main/types'
 import { ReactComponent as BtnDelete } from './img/buttonDelete.svg'
 import { ReactComponent as BtnMinus } from './img/buttonMinus.svg'
 import { ReactComponent as BtnPlus } from './img/buttonPlus.svg'
-import { FC } from 'react'
-import styles from './styles.module.scss'
-import { addItem, minusItem, removeItem } from '../../../../../redux/slices/slice'
+import { BasketItemsProps } from './types/BasketItem.types'
 import { useDispatch } from 'react-redux'
-
-interface BasketItemsProps {
-  id: string
-  img: string
-  name: string
-  info: string
-  price: number
-  count: number
-}
+import { FC } from 'react'
+import styles from './styles/styles.module.scss'
+import BasketIControllers from './services/BasketIControllers'
 
 export const BasketItem: FC<BasketItemsProps> = ({ id, img, name, info, price, count }) => {
   const dispatch = useDispatch()
 
-  /// onClick //
-
-  const minusProduct = (id: string): void => {
-    if (count === 1) {
-      if (window.confirm('Вы дейтсвительно хотите удалить товар?')) {
-        dispatch(removeItem(id))
-      }
-    } else {
-      dispatch(minusItem(id))
-    }
-  }
-  const plusProduct = (id: string): void => {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    dispatch(addItem({ id } as ISets))
-  }
-  const deleteProduct = (id: string): any => {
-    if (window.confirm('Вы дейтсвительно хотите удалить товар?')) {
-      dispatch(removeItem(id))
-    }
-  }
-  /// onClick //
+  /// functions //
+  const { minusProduct, plusProduct, deleteProduct } = BasketIControllers({ count, dispatch })
+  /// functions //
 
   return (
     <>

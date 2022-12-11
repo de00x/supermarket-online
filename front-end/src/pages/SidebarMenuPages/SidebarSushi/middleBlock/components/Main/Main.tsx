@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/hooks'
 import { selectCart } from '../../../../../../redux/slices/selectors'
 import { ReactComponent as Sushi } from '../../../img/sushi.svg'
-import { addItem } from '../../../../../../redux/slices/slice'
-import { FC, useEffect, useRef, useState } from 'react'
+import { useAppSelector } from '../../../../../../hooks/hooks'
 import { SkeletonSushiLoading } from './components'
+import { ISushi } from './types/SSushi.types'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ISushi } from './types'
-import axios from 'axios'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SSushiService from './services/SSushi.service'
+import SSushiControllers from './services/SSushiControllers'
+import SSushiStylesControllers from './styles/SSushiStylesControllers'
 
 export const Main: FC = () => {
   const [allSushi, setAllSushi] = useState<ISushi[]>([])
@@ -17,83 +17,26 @@ export const Main: FC = () => {
   const [sortFly, setSortFly] = useState(false)
   const [errAuth, setErrAuth] = useState(false)
   const { items } = useAppSelector(selectCart)
-  const dispatch = useAppDispatch()
   const isMounted = useRef(false)
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// functions ///
+  const { addProductToBasket, getDefault, getLess, getMore } = SSushiControllers({
+    allSushi,
+    setSortBy,
+    setErrAuth,
+    setSortFly,
+    setAllSushi,
+  })
+  /// functions ///
 
-  useEffect(() => {
-    localStorage.setItem('location', 'sushi')
-    window.scrollTo(0, 0)
-    axios
-      .get('/sushi')
-      .then((res) => setAllSushi(res.data))
-      .then(() => setIsLoading(false))
-      .catch((err) => console.log('errSushi', err))
-  }, [])
-
-  /// onClick ///
-  const addProductToBasket = (sushi: ISushi): void => {
-    const item: ISushi = {
-      id: sushi.id,
-      img: sushi.img,
-      name: sushi.name,
-      info: sushi.info,
-      price: sushi.price,
-      count: sushi.count,
-    }
-    if (localStorage.getItem('login') === null) {
-      window.scrollTo(0, 0)
-      setErrAuth(true)
-      setTimeout(() => {
-        setErrAuth(false)
-      }, 7000)
-    } else dispatch(addItem(item))
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/sushi')
-      .then((res) => setAllSushi(res.data))
-      .catch((err) => console.log('errSushi', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allSushi.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return a.price - b.price
-    })
-    return setAllSushi(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allSushi.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return b.price - a.price
-    })
-    return setAllSushi(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SSushiService.GetAllSushi(isMounted, items, setAllSushi, setIsLoading)
+  /// useEffects ///
 
   /// styles ///
-  const stylesSort = cn(styles.sort, { [styles.sortTrue]: sortFly })
-  const stylesErrAuth = cn(styles.errAuth, { [styles.errAuthActive]: errAuth })
-  const stylesErrAuthContainerBgdRed = cn(styles.errAuthContainer, {
-    [styles.errAuthContainerBgdRed]: errAuth,
+  const { stylesSort, stylesErrAuth, stylesErrAuthContainerBgdRed } = SSushiStylesControllers({
+    sortFly,
+    errAuth,
   })
   /// styles ///
 

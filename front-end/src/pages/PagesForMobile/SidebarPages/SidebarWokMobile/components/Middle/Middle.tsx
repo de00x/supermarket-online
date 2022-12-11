@@ -1,17 +1,15 @@
-import { selectCart } from '../../../../../../redux/slices/selectors'
-import { useAppSelector } from '../../../../../../hooks/hooks'
-import { addItem } from '../../../../../../redux/slices/slice'
 import { SkeletonSetsMobile } from '../../../../../Skeletons'
 import { ReactComponent as SortBy } from './img/sortBy.svg'
 import { ReactComponent as Cart } from './img/cart.svg'
-import { FC, useEffect, useRef, useState } from 'react'
 import { ReactComponent as Wok } from './img/WOK.svg'
-import { useDispatch } from 'react-redux'
+import { FC, useRef, useState } from 'react'
+import { IWok } from './types/SWokM.types'
 import { Link } from 'react-router-dom'
-import { IWok } from './types'
-import axios from 'axios'
 import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SWokMService from './services/SWokM.service'
+import SWokMControllers from './services/SWokMControllers'
+import SWokStyleControllers from './styles/SWokStyleControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [isLoadingPage, setIsLoadingPage] = useState(true)
@@ -20,88 +18,19 @@ export const Middle: FC = (): JSX.Element => {
   const [allWok, setAllWok] = useState<IWok[]>([])
   const [sortBy, setSortBy] = useState('Сортировка')
   const isMounted = useRef(false)
-  const dispatch = useDispatch()
-  const { items, totalPrice } = useAppSelector(selectCart)
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
 
-  useEffect(() => {
-    axios
-      .get('/wok')
-      .then((res) => setAllWok(res.data))
-      .then(() => setIsLoadingPage(false))
-      .catch((err) => console.log('errWok', err))
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// controllers ///
+  const { addProductToBasket, getDefault, getLess, getMore, items, totalPrice, totalCount } =
+    SWokMControllers({ allWok, setAllWok, setSortBy, setSortFly, setErrNotAuth })
+  /// controllers ///
 
-  /// onClick ///
-  const addProductToBasket = (cartProduct: IWok): void => {
-    const item: IWok = {
-      id: cartProduct.id,
-      img: cartProduct.img,
-      name: cartProduct.name,
-      info: cartProduct.info,
-      price: cartProduct.price,
-      count: cartProduct.count,
-    }
-    if (localStorage.getItem('login') !== null) {
-      dispatch(addItem(item))
-    } else {
-      window.scrollTo(0, 0)
-      setErrNotAuth(true)
-      setTimeout(() => {
-        setErrNotAuth(false)
-      }, 7000)
-    }
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/wok')
-      .then((res) => setAllWok(res.data))
-      .catch((err) => console.log('errWok', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allWok.sort(function (a, b) {
-      return a.price - b.price
-    })
-    return setAllWok(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allWok.sort(function (a, b) {
-      return b.price - a.price
-    })
-    return setAllWok(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SWokMService.GetWok(setAllWok, setIsLoadingPage, isMounted, items)
+  /// useEffects ///
 
   // styles ///
-  const classSortFlyOpenTextDefault = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'По умолчанию',
-  })
-  const classSortFlyOpenTextHigh = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дороже',
-  })
-  const classSortFlyOpenTextLow = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дешевле',
-  })
+  const { classSortFlyOpenTextDefault, classSortFlyOpenTextHigh, classSortFlyOpenTextLow } =
+    SWokStyleControllers(sortBy)
   // styles ///
 
   return (

@@ -1,17 +1,15 @@
-import { selectCart } from '../../../../../../redux/slices/selectors'
-import { useAppSelector } from '../../../../../../hooks/hooks'
-import { addItem } from '../../../../../../redux/slices/slice'
 import { SkeletonSetsMobile } from '../../../../../Skeletons'
 import { ReactComponent as SortBy } from './img/sortBy.svg'
 import { ReactComponent as Stocks } from './img/stocks.svg'
 import { ReactComponent as Cart } from './img/cart.svg'
-import { FC, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { IStocks } from './types/SStocks.types'
+import { FC, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IStocks } from './types'
-import axios from 'axios'
 import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SStocksService from './services/SStocks.service'
+import SStocksSControllers from './styles/SStocksSControllers'
+import SStocksMControllers from './services/SStocksMControllers'
 
 export const Middle: FC = (): JSX.Element => {
   const [allStocks, setAllStocks] = useState<IStocks[]>([])
@@ -20,88 +18,19 @@ export const Middle: FC = (): JSX.Element => {
   const [sortBy, setSortBy] = useState('Сортировка')
   const [sortFly, setSortFly] = useState(false)
   const isMounted = useRef(false)
-  const dispatch = useDispatch()
-  const { items, totalPrice } = useAppSelector(selectCart)
-  const totalCount = items.reduce(
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    (sum: number, item: any) => sum + item.count,
-    0
-  )
 
-  useEffect(() => {
-    axios
-      .get('/stocks')
-      .then((res) => setAllStocks(res.data))
-      .then(() => setIsLoadingPage(false))
-      .catch((err) => console.log('errStocks', err))
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// controllers ///
+  const { items, totalPrice, totalCount, addProductToBasket, getDefault, getLess, getMore } =
+    SStocksMControllers({ allStocks, setSortBy, setSortFly, setAllStocks, setErrNotAuth })
+  /// controllers ///
 
-  /// onClick ///
-  const addProductToBasket = (cartProduct: IStocks): void => {
-    const item: IStocks = {
-      id: cartProduct.id,
-      img: cartProduct.img,
-      name: cartProduct.name,
-      info: cartProduct.info,
-      price: cartProduct.price,
-      count: cartProduct.count,
-    }
-    if (localStorage.getItem('login') !== null) {
-      dispatch(addItem(item))
-    } else {
-      window.scrollTo(0, 0)
-      setErrNotAuth(true)
-      setTimeout(() => {
-        setErrNotAuth(false)
-      }, 7000)
-    }
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/stocks')
-      .then((res) => setAllStocks(res.data))
-      .catch((err) => console.log('errStocks', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allStocks.sort(function (a, b) {
-      return a.price - b.price
-    })
-    return setAllStocks(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allStocks.sort(function (a, b) {
-      return b.price - a.price
-    })
-    return setAllStocks(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SStocksService.GetStocks(setAllStocks, setIsLoadingPage, isMounted, items)
+  /// useEffects ///
 
   // styles ///
-  const classSortFlyOpenTextDefault = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'По умолчанию',
-  })
-  const classSortFlyOpenTextHigh = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дороже',
-  })
-  const classSortFlyOpenTextLow = cn({
-    [styles.sortFlyOpenTextActive]: sortBy === 'Сначала дешевле',
-  })
+  const { classSortFlyOpenTextDefault, classSortFlyOpenTextHigh, classSortFlyOpenTextLow } =
+    SStocksSControllers(sortBy)
   // styles ///
 
   return (

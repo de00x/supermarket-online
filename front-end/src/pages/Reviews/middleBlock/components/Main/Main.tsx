@@ -1,11 +1,13 @@
 import { ReactComponent as ReviewsLogo } from './img/reviewsLogo.svg'
-import { FC, SyntheticEvent, useEffect, useState } from 'react'
+import { IResponse, IReviewsData } from './types/Reviews.types'
 import { ReactComponent as Star } from './img/star.svg'
 import { SkeletonReviews } from '../../../../Skeletons'
-import { IResponse, IReviewsData } from './types'
-import axios, { AxiosResponse } from 'axios'
+import { FC, useState } from 'react'
 import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import ReviewsService from './services/Reviews.service'
+import ReviewsControllers from './services/ReviewsControllers'
+import ReviewsSControllers from './styles/ReviewsSControllers'
 
 export const Main: FC = () => {
   const [addNewReviewSuccessText, setAddNewReviewSuccessText] = useState(false)
@@ -22,145 +24,38 @@ export const Main: FC = () => {
     stars: 0,
   })
 
-  useEffect(() => {
-    axios
-      .get('/reviews')
-      .then((res) => onResponseAllreviews(res))
-      .catch((err) => console.log('err', err))
-  }, [formAddNewReview])
-  useEffect(() => {
-    localStorage.setItem('location', 'reviews')
-  }, [])
+  /// functions ///
+  const {
+    submit,
+    onExitForm,
+    onFirstStar,
+    onThirdStar,
+    onFifthStar,
+    onFourthStar,
+    onSecondStar,
+    openFormAddNewReview,
+    onResponseAllreviews,
+  } = ReviewsControllers({
+    reviewsData,
+    setIsLoading,
+    setUserNotAuth,
+    setReviewsData,
+    responseReviews,
+    setCurrentProblem,
+    setResponseReviews,
+    setFormAddNewReview,
+    setRepeatUserOfNewReview,
+    setAddNewReviewSuccessText,
+  })
+  /// functions ///
 
-  /// onClick ///
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const submit = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (reviewsData.name.length > 1) {
-      if (reviewsData.reviews.length > 9) {
-        if (reviewsData.stars > 0) {
-          axios
-            .post('/review', {
-              id: localStorage.getItem('id'),
-              name: reviewsData.name,
-              reviews: reviewsData.reviews,
-              stars: reviewsData.stars,
-            })
-            .then(() => successCreatedNewReview())
-            .catch((err) => console.log('err', err))
-        } else errStart()
-      } else setCurrentProblem('errReviews')
-    } else setCurrentProblem('errName')
-  }
-  const onResponseAllreviews = (res: AxiosResponse): void => {
-    const allReviewsReverse = res.data.reverse()
-    setResponseReviews(allReviewsReverse)
-    setIsLoading(false)
-  }
-  const successCreatedNewReview = (): void => {
-    setFormAddNewReview(false)
-    setAddNewReviewSuccessText(true)
-    setTimeout(() => {
-      setAddNewReviewSuccessText(false)
-    }, 5000)
-  }
-  const openFormAddNewReview = (): void => {
-    const isRepeatUser = responseReviews.find(
-      (userId: IResponse) => userId.id === localStorage.getItem('id')
-    )
-    if (localStorage.getItem('login') === null) {
-      setUserNotAuth(true)
-      setTimeout(() => {
-        setUserNotAuth(false)
-      }, 5000)
-    } else if (isRepeatUser != null) {
-      setRepeatUserOfNewReview(true)
-      setTimeout(() => {
-        setRepeatUserOfNewReview(false)
-      }, 5000)
-    } else setFormAddNewReview(true)
-  }
-  const onSecondStar = (): void => {
-    setCurrentProblem('')
-    setReviewsData({ ...reviewsData, stars: 2 })
-  }
-  const onFourthStar = (): void => {
-    setCurrentProblem('')
-    setReviewsData({ ...reviewsData, stars: 4 })
-  }
-  const onFirstStar = (): void => {
-    setCurrentProblem('')
-    if (reviewsData.stars === 1) {
-      setReviewsData({ ...reviewsData, stars: 0 })
-    } else setReviewsData({ ...reviewsData, stars: 1 })
-  }
-  const onThirdStar = (): void => {
-    setCurrentProblem('')
-    setReviewsData({ ...reviewsData, stars: 3 })
-  }
-  const onFifthStar = (): void => {
-    setCurrentProblem('')
-    setReviewsData({ ...reviewsData, stars: 5 })
-  }
-  const onExitForm = (): void => {
-    setCurrentProblem('')
-    setFormAddNewReview(false)
-    setReviewsData({ ...reviewsData, name: '', reviews: '', stars: 0 })
-  }
-  const errStart = (): void => {
-    setCurrentProblem('errStars')
-    setTimeout(() => {
-      setCurrentProblem('')
-    }, 150)
-    setTimeout(() => {
-      setCurrentProblem('errStars')
-    }, 300)
-    setTimeout(() => {
-      setCurrentProblem('')
-    }, 450)
-    setTimeout(() => {
-      setCurrentProblem('errStars')
-    }, 600)
-    setTimeout(() => {
-      setCurrentProblem('')
-    }, 750)
-    setTimeout(() => {
-      setCurrentProblem('errStars')
-    }, 900)
-    setTimeout(() => {
-      setCurrentProblem('')
-    }, 1050)
-    setTimeout(() => {
-      setCurrentProblem('errStars')
-    }, 1200)
-    setTimeout(() => {
-      setCurrentProblem('')
-    }, 1350)
-    setTimeout(() => {
-      setCurrentProblem('errStars')
-    }, 1500)
-  }
-
-  /// onClick ///
+  /// useEffects ///
+  ReviewsService.GetAllReviews(onResponseAllreviews, formAddNewReview)
+  /// useEffects ///
 
   /// styles ///
-  const stylesStarsContainer = cn(styles.starsContainer, {
-    [styles.starsActiveOne]: counterStars === 1 || reviewsData.stars === 1,
-    [styles.starsActiveTwo]: counterStars === 2 || reviewsData.stars === 2,
-    [styles.starsActiveThree]: counterStars === 3 || reviewsData.stars === 3,
-    [styles.starsActiveThour]: counterStars === 4 || reviewsData.stars === 4,
-    [styles.starsActiveFive]: counterStars === 5 || reviewsData.stars === 5,
-    [styles.starsContainerErr]: currentProblem === 'errStars',
-  })
-  const stylesAddReviewsBtn = cn(styles.addReviewsBtn, {
-    [styles.addReviewsBtnActive]: formAddNewReview,
-  })
-  const stylesFormTextarea = cn(styles.formTextarea, {
-    [styles.formTextareaErrData]: currentProblem === 'errReviews',
-  })
-  const stylesFormHeader = cn(styles.formHeader, {
-    [styles.formHeaderInputErrData]: currentProblem === 'errName',
-  })
+  const { stylesStarsContainer, stylesAddReviewsBtn, stylesFormTextarea, stylesFormHeader } =
+    ReviewsSControllers({ counterStars, reviewsData, currentProblem, formAddNewReview })
   /// styles ///
 
   return (

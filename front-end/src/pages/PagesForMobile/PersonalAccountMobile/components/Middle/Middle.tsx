@@ -1,6 +1,6 @@
 import { Delivery, Favourites, Logout, OrdersHistory, PersonalInfo, Subscribe } from './components'
 import { FC } from 'react'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const Middle: FC = (): JSX.Element => {
   const isAuth = (): boolean => {

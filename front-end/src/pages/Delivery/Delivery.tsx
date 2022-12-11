@@ -2,7 +2,7 @@ import { DeliveryMobile } from '../PagesForMobile/DeliveryMobile'
 import { Main } from './components/Main/Main'
 import { Basket } from './components/Basket'
 import { FC } from 'react'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const Delivery: FC = () => {
   return (

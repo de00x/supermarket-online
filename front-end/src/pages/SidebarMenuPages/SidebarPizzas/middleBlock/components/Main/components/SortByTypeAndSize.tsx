@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
-import { IPizzas } from '../types'
-import styles from '../styles.module.scss'
+import { IPizzas } from '../types/SPizzas.types'
+import styles from '../styles/styles.module.scss'
 
 export const SortByTypeAndSize: FC<IPizzas> = ({ types, sizes }) => {
   const [activeSize, setActiveSize] = useState(0)

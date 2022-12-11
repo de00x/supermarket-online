@@ -15,7 +15,7 @@ import {
   middleItem9,
 } from './img/img'
 import { Link } from 'react-router-dom'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
 
 export const Middle: FC = (): JSX.Element => {
   useEffect(() => {

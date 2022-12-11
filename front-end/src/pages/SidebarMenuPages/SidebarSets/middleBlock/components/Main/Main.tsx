@@ -1,14 +1,14 @@
-import { useAppDispatch, useAppSelector } from '../../../../../../hooks/hooks'
 import { selectCart } from '../../../../../../redux/slices/selectors'
 import { ReactComponent as Sets } from '../../../img/foodSets.svg'
-import { addItem } from '../../../../../../redux/slices/slice'
-import { FC, useEffect, useRef, useState } from 'react'
+import { useAppSelector } from '../../../../../../hooks/hooks'
 import { SkeletonSetsLoading } from './components'
+import { FC, useRef, useState } from 'react'
+import { ISets } from './types/SSets.types'
 import { Link } from 'react-router-dom'
-import { ISets } from './types'
-import axios from 'axios'
-import cn from 'classnames'
-import styles from './styles.module.scss'
+import styles from './styles/styles.module.scss'
+import SSetsService from './services/SSets.service'
+import SSetsControllers from './services/SSetsControllers'
+import SSetsStylesControllers from './styles/SSetsStylesControllers'
 
 export const Main: FC = () => {
   const [sortBy, setSortBy] = useState('По умолчанию')
@@ -17,83 +17,26 @@ export const Main: FC = () => {
   const [sortFly, setSortFly] = useState(false)
   const [errAuth, setErrAuth] = useState(false)
   const { items } = useAppSelector(selectCart)
-  const dispatch = useAppDispatch()
   const isMounted = useRef(false)
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(items)
-      localStorage.setItem('cart', json)
-    }
-    isMounted.current = true
-  }, [items])
+  /// functions ///
+  const { addProductToBasket, getDefault, getLess, getMore } = SSetsControllers({
+    allSets,
+    setSortBy,
+    setErrAuth,
+    setSortFly,
+    setAllSets,
+  })
+  /// functions ///
 
-  useEffect(() => {
-    localStorage.setItem('location', 'sets')
-    window.scrollTo(0, 0)
-    axios
-      .get('/sets')
-      .then((res) => setAllSets(res.data))
-      .then(() => setIsLoading(false))
-      .catch((err) => console.log('errSets', err))
-  }, [])
-
-  /// onClick ///
-  const addProductToBasket = (sets: ISets): void => {
-    const item: ISets = {
-      id: sets.id,
-      img: sets.img,
-      name: sets.name,
-      info: sets.info,
-      price: sets.price,
-      count: sets.count,
-    }
-    if (localStorage.getItem('login') === null) {
-      window.scrollTo(0, 0)
-      setErrAuth(true)
-      setTimeout(() => {
-        setErrAuth(false)
-      }, 7000)
-    } else dispatch(addItem(item))
-  }
-  /// onClick ///
-
-  // Sort by //
-  const getDefault = (): void => {
-    setSortBy('По умолчанию')
-    setSortFly(false)
-    axios
-      .get('/sets')
-      .then((res) => setAllSets(res.data))
-      .catch((err) => console.log('errSets', err))
-  }
-
-  const getLess = (): void => {
-    setSortBy('Сначала дешевле')
-    setSortFly(false)
-    const result = allSets.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return a.price - b.price
-    })
-    return setAllSets(result)
-  }
-
-  const getMore = (): void => {
-    setSortBy('Сначала дороже')
-    setSortFly(false)
-    const result = allSets.sort(function (a, b) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      return b.price - a.price
-    })
-    return setAllSets(result)
-  }
-  // Sort by //
+  /// useEffects ///
+  SSetsService.GetAllSets(isMounted, items, setAllSets, setIsLoading)
+  /// useEffects ///
 
   /// styles ///
-  const stylesSort = cn(styles.sort, { [styles.sortTrue]: sortFly })
-  const stylesErrAuth = cn(styles.errAuth, { [styles.errAuthActive]: errAuth })
-  const stylesErrAuthContainerBgdRed = cn(styles.errAuthContainer, {
-    [styles.errAuthContainerBgdRed]: errAuth,
+  const { stylesSort, stylesErrAuth, stylesErrAuthContainerBgdRed } = SSetsStylesControllers({
+    sortFly,
+    errAuth,
   })
   /// styles ///
 
